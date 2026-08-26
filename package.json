@@ -1,0 +1,35 @@
+{
+  "name": "mineguard-module-3-command-center",
+  "version": "1.0.0",
+  "description": "MineGuard AI Module 3 - Digital Mine Map, Central Alert Management, Rescue Coordination and Administration",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "node server/index.js",
+    "client": "npm --prefix client run dev",
+    "dev": "concurrently \"node server/index.js\" \"npm --prefix client run dev\"",
+    "build": "npm --prefix client run build",
+    "test": "node server/test_api.js",
+    "push": "node git_manager.js"
+  },
+  "keywords": [
+    "mineguard",
+    "mining-safety",
+    "subsidence-monitoring",
+    "smart-band",
+    "command-center",
+    "rescue-coordination"
+  ],
+  "author": "MineGuard AI Team Member 3",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "isomorphic-git": "^1.41.9",
+    "jsonwebtoken": "^9.0.3",
+    "ws": "^8.19.0"
+  }
+}
