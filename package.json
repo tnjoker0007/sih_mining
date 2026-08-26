@@ -1,0 +1,15 @@
+{
+  "name": "mineguard-module2",
+  "version": "1.0.0",
+  "description": "MineGuard Module 2 - Smart Miner Safety Band and Emergency Communication",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "author": "Antigravity",
+  "license": "ISC"
+}

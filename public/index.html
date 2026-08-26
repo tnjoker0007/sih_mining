@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MineGuard AI - Guardian Wearable Command Center</title>
+  <!-- Google Fonts: Inter & Orbitron -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Bar Layout -->
+  <header>
+    <div class="logo-section">
+      <i data-lucide="shield-alert" class="logo-icon"></i>
+      <h1>MINEGUARD AI</h1>
+      <span class="module-badge">GUARDIAN WEARABLE</span>
+    </div>
+    
+    <div class="header-controls">
+      <!-- Mine Selector -->
+      <div class="control-item">
+        <label for="header-mine-select"><i data-lucide="map-pin" style="width: 13px; height: 13px; color: var(--accent-cyan);"></i> Mine:</label>
+        <select id="header-mine-select" class="header-select">
+          <option value="MINE_001">MINE_001 (Underground Coal)</option>
+          <option value="MINE_002">MINE_002 (Open Pit Iron)</option>
+        </select>
+      </div>
+
+      <!-- LoRa Network Indicator -->
+      <div class="control-item network-indicator">
+        <i data-lucide="radio" class="network-icon"></i>
+        <span>LoRa: <strong style="color: var(--accent-green);">915 MHz (OK)</strong></span>
+      </div>
+
+      <!-- Notifications -->
+      <div class="control-item notifications-btn" id="btn-notifications" title="System Alerts">
+        <i data-lucide="bell"></i>
+        <span class="notification-badge" id="alert-badge-count">0</span>
+      </div>
+
+      <!-- Operator User -->
+      <div class="control-item operator-profile">
+        <div class="operator-avatar">OP</div>
+        <span>OP_SEC_02</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <main>
+    
+    <!-- Left Pane: Control Room Console (Guardian Wearable Dashboard) -->
+    <section class="control-center">
+      
+      <!-- Top KPI Cards Row -->
+      <div class="kpi-container">
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper cyan">
+            <i data-lucide="users"></i>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-label">Active Miners</span>
+            <span class="kpi-value" id="kpi-miners">0</span>
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper green">
+            <i data-lucide="radio-receiver"></i>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-label">Bands Online</span>
+            <span class="kpi-value" id="kpi-bands">0</span>
+          </div>
+        </div>
+        
+        <div class="kpi-card" id="kpi-card-battery">
+          <div class="kpi-icon-wrapper amber">
+            <i data-lucide="battery-warning"></i>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-label">Low Battery</span>
+            <span class="kpi-value" id="kpi-low-battery">0</span>
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper blue">
+            <i data-lucide="trending-down"></i>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-label">Fall Events</span>
+            <span class="kpi-value" id="kpi-falls">0</span>
+          </div>
+        </div>
+        
+        <div class="kpi-card" id="kpi-card-sos">
+          <div class="kpi-icon-wrapper red">
+            <i data-lucide="siren"></i>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-label">Active SOS</span>
+            <span class="kpi-value" id="kpi-sos">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Area: prominent Active SOS/Emergency panel plus selected miner details -->
+      <div class="dashboard-grid-2" style="grid-template-columns: 1.2fr 0.8fr; gap: 20px;">
+        
+        <!-- Prominent SOS / Emergency Panel -->
+        <div class="dashboard-card main-emergency-panel" id="main-sos-panel">
+          <!-- Active SOS Banner (flashes when SOS active) -->
+          <div id="active-sos-details-container" style="display: none; height: 100%;">
+            <div class="emergency-badge-banner">
+              <i data-lucide="alert-octagon" style="animation: pulse 1s infinite;"></i>
+              <span>CRITICAL ALARM: SOS DETECTED</span>
+            </div>
+            <div class="emergency-data-grid">
+              <div class="emergency-main-info">
+                <h2 id="emerg-miner-name">JOHN DOE</h2>
+                <div class="emerg-meta-stats">
+                  <span>ID: <strong id="emerg-miner-id">-</strong></span>
+                  <span>Band: <strong id="emerg-band-id">-</strong></span>
+                  <span>Zone: <strong id="emerg-zone-id" class="badge warning">-</strong></span>
+                  <span>Time: <strong id="emerg-time">-</strong></span>
+                </div>
+                <div class="emerg-telemetry-block">
+                  <span>Battery: <strong id="emerg-battery">-</strong></span>
+                  <span>Comm Status: <strong id="emerg-comm" style="color: var(--accent-green);">CONNECTED</strong></span>
+                  <span>Trigger: <strong id="emerg-source" style="color: var(--accent-red);">-</strong></span>
+                </div>
+                <p class="emerg-detail-quote" id="emerg-details-text">"Manual SOS button pressed"</p>
+              </div>
+              <div class="emergency-actions">
+                <button class="btn btn-primary btn-large" id="btn-main-ack">ACKNOWLEDGE SOS</button>
+                <button class="btn btn-danger btn-large" id="btn-main-resolve">RESOLVE EMERGENCY</button>
+                <button class="btn btn-secondary" id="btn-main-mute"><i data-lucide="volume-2" id="main-mute-icon"></i> Mute Siren</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Idle Screen / Radar visual when no SOS -->
+          <div id="idle-radar-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; gap: 15px;">
+            <div class="radar-box">
+              <div class="radar-sweep"></div>
+              <i data-lucide="shield-check" class="radar-center-icon"></i>
+            </div>
+            <span style="font-size: 13px; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.5px;">SYSTEM STATUS NOMINAL: MONITORING WEARABLES</span>
+          </div>
+        </div>
+
+        <!-- Selected Miner Details Panel -->
+        <div class="dashboard-card selected-miner-card">
+          <div class="card-header">
+            <div class="card-title">
+              <i data-lucide="user-check"></i>
+              <span>Selected Miner Details</span>
+            </div>
+          </div>
+          <div class="miner-details-body" id="selected-miner-details-view">
+            <div style="text-align: center; color: var(--text-secondary); padding: 40px 10px;">
+              <i data-lucide="user" style="width: 40px; height: 40px; stroke-width: 1; margin-bottom: 10px;"></i>
+              <p>Select a miner from the table below to view live parameters, battery, and signal logs.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Second Row: Miner/Band Status table and Recent Fall Events -->
+      <div class="dashboard-grid-2" style="grid-template-columns: 1.1fr 0.9fr; gap: 20px;">
+        
+        <!-- Combined Miner / Band Status Table -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-title">
+              <i data-lucide="table"></i>
+              <span>Miner & Band Status Directory</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-secondary" id="btn-open-add-miner" style="padding: 6px 12px; font-size:12px;">
+                <i data-lucide="user-plus" style="width: 12px; height: 12px;"></i> Register Miner
+              </button>
+              <button class="btn btn-secondary" id="btn-open-add-band" style="padding: 6px 12px; font-size:12px;">
+                <i data-lucide="plus-circle" style="width: 12px; height: 12px;"></i> Register Band
+              </button>
+            </div>
+          </div>
+          <div style="overflow-x: auto; max-height: 250px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Miner / ID</th>
+                  <th>Assigned Band</th>
+                  <th>Zone</th>
+                  <th>Battery</th>
+                  <th>Signal</th>
+                  <th>Safety Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="miner-table-body">
+                <!-- Dynamically filled -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Recent Fall Events -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-title">
+              <i data-lucide="trending-down"></i>
+              <span>Recent Fall Events</span>
+            </div>
+          </div>
+          <div style="overflow-x: auto; max-height: 250px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Miner / Band</th>
+                  <th>Peak Acceleration</th>
+                  <th>Device Orientation</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="fall-table-body">
+                <!-- Dynamically filled -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom: Communication Log and Quick Broadcast Actions -->
+      <div class="dashboard-grid-2" style="grid-template-columns: 0.9fr 1.15fr; gap: 20px;">
+        
+        <!-- Communication Log Chat box -->
+        <div class="dashboard-card" style="display: flex; flex-direction: column; height: 350px;">
+          <div class="card-header">
+            <div class="card-title">
+              <i data-lucide="message-square"></i>
+              <span>Control Room Communication Logs</span>
+            </div>
+          </div>
+          <div class="chat-box" id="chat-messages-box" style="flex: 1; margin-bottom: 12px;">
+            <!-- Dynamically populated messages -->
+          </div>
+        </div>
+
+        <!-- Quick Broadcast Actions & Alert Broadcast form -->
+        <div class="dashboard-card" style="display: flex; flex-direction: column; height: 350px;">
+          <div class="card-header">
+            <div class="card-title">
+              <i data-lucide="megaphone"></i>
+              <span>Emergency Command Broadcast</span>
+            </div>
+          </div>
+          
+          <!-- Quick Action Buttons -->
+          <div class="quick-broadcast-grid">
+            <button class="quick-action-btn evacuate-all" onclick="triggerQuickBroadcast('EVACUATE ALL', 'CRITICAL')">
+              <i data-lucide="alert-triangle"></i> EVACUATE ALL
+            </button>
+            <button class="quick-action-btn evacuate-zone" onclick="triggerQuickBroadcast('EVACUATE ZONE', 'CRITICAL')">
+              <i data-lucide="navigation"></i> EVACUATE ZONE
+            </button>
+            <button class="quick-action-btn" onclick="triggerQuickBroadcast('MOVE TO SAFE ZONE', 'WARNING')">
+              <i data-lucide="shield"></i> MOVE TO SAFE ZONE
+            </button>
+            <button class="quick-action-btn" onclick="triggerQuickBroadcast('STAY CALM', 'INFO')">
+              <i data-lucide="heart"></i> STAY CALM
+            </button>
+            <button class="quick-action-btn" onclick="triggerQuickBroadcast('RESCUE TEAM ON THE WAY', 'CRITICAL')">
+              <i data-lucide="truck"></i> RESCUE ON THE WAY
+            </button>
+            <button class="quick-action-btn" id="btn-quick-ack" style="display: none;">
+              <i data-lucide="check-square"></i> ACKNOWLEDGE SOS
+            </button>
+          </div>
+
+          <form id="broadcast-form" style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="form-group">
+                <label for="broadcast-target-type">Custom Target Type</label>
+                <select id="broadcast-target-type" class="form-control">
+                  <option value="all">Broadcast to All Miners</option>
+                  <option value="zone">Broadcast to Specific Zone</option>
+                  <option value="band">Send to Specific Band ID</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="broadcast-target-id">Target Details / ID</label>
+                <input type="text" id="broadcast-target-id" class="form-control" placeholder="e.g. ZONE_A" disabled>
+              </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; align-items: flex-end;">
+              <div class="form-group">
+                <label for="broadcast-message">Custom Command Text</label>
+                <input type="text" id="broadcast-message" class="form-control" placeholder="Write custom alert..." required>
+              </div>
+              <div class="form-group">
+                <label for="broadcast-severity">Severity Rating</label>
+                <select id="broadcast-severity" class="form-control">
+                  <option value="INFO">INFO</option>
+                  <option value="WARNING">WARNING</option>
+                  <option value="CRITICAL">CRITICAL</option>
+                </select>
+              </div>
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end; margin-top: 5px;">
+              <button type="submit" class="btn btn-primary" style="padding: 10px 24px;">Send Custom Broadcast</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Right Pane: Wearable Device Simulator (Interactive Smart Band panel) -->
+    <section class="simulator-pane">
+      <h3 style="font-size: 16px; font-weight: 700; color: var(--accent-cyan); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px;">
+        <i data-lucide="tablet-smartphone" style="vertical-align: middle; margin-right: 5px;"></i> Wearable Band Simulator
+      </h3>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="simulator-select-band">Select Band to Simulate</label>
+        <select id="simulator-select-band" class="form-control">
+          <!-- Dynamically filled with active bands -->
+        </select>
+      </div>
+
+      <!-- The Smartwatch Graphic -->
+      <div class="band-simulator-wrapper">
+        <div class="device-body" id="virtual-device">
+          
+          <!-- Screen Bezel -->
+          <div class="device-screen-bezel" id="virtual-screen-bezel">
+            <div class="device-screen">
+              
+              <!-- Screen Header -->
+              <div class="screen-header">
+                <span id="screen-lora-id">LORA_101</span>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                  <span id="screen-battery-icon"><i data-lucide="battery" style="width: 10px; height: 10px;"></i></span>
+                  <span id="screen-battery-text">85%</span>
+                </div>
+              </div>
+
+              <!-- Screen Body -->
+              <div class="screen-body" id="screen-body-content">
+                <span style="font-size: 10px; opacity: 0.6;">MINER:</span>
+                <span id="screen-miner-name" style="font-size: 13px; font-weight: 700; text-transform: uppercase;">JOHN DOE</span>
+                <div id="screen-movement-status" style="font-size: 9px; padding: 2px 6px; background: rgba(0, 242, 254, 0.2); border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.4); margin-top: 4px;">
+                  STATUS: NORMAL
+                </div>
+              </div>
+
+              <!-- Screen Footer -->
+              <div class="screen-footer">
+                <span id="screen-time">12:46</span>
+                <span id="screen-signal"><i data-lucide="signal" style="width: 10px; height: 10px;"></i> 92%</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Hardware Buttons -->
+          <button class="hardware-btn btn-sos" id="hw-btn-sos" title="Hardware SOS button"></button>
+          <button class="hardware-btn btn-action" id="hw-btn-action" title="Cancel/Acknowledge Button"></button>
+
+        </div>
+      </div>
+
+      <!-- LED Indicators & Feedback -->
+      <div style="display: flex; gap: 10px; justify-content: center; margin: 10px 0;">
+        <div class="led-indicator">
+          <div class="led-dot" id="led-buzzer"></div>
+          <span>Buzzer</span>
+        </div>
+        <div class="led-indicator">
+          <div class="led-dot" id="led-vibrate"></div>
+          <span>Vibrator</span>
+        </div>
+        <div class="led-indicator">
+          <div class="led-dot" id="led-rgb"></div>
+          <span>LED</span>
+        </div>
+      </div>
+
+      <!-- Simulated Environmental & Sensor Controls -->
+      <div class="dashboard-card" style="padding: 15px;">
+        <div class="card-title" style="font-size: 13px; margin-bottom: 12px;">
+          <i data-lucide="sliders"></i> Sensor & Network Controls
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between;">
+            <label for="sim-battery">Battery Level</label>
+            <span id="sim-battery-val" style="font-size: 12px; color: var(--accent-cyan);">85%</span>
+          </div>
+          <input type="range" id="sim-battery" min="0" max="100" value="85" style="width: 100%;">
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between;">
+            <label for="sim-signal">Signal Strength</label>
+            <span id="sim-signal-val" style="font-size: 12px; color: var(--accent-cyan);">92%</span>
+          </div>
+          <input type="range" id="sim-signal" min="0" max="100" value="92" style="width: 100%;">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+          <div class="form-group">
+            <label for="sim-motion">Motion Activity</label>
+            <select id="sim-motion" class="form-control">
+              <option value="NORMAL">Normal Walk</option>
+              <option value="ACTIVE">Running / Working</option>
+              <option value="INACTIVE">Stationary / Inactive</option>
+            </select>
+          </div>
+          <div class="form-group" style="justify-content: flex-end; align-items: flex-end;">
+            <div style="display: flex; align-items: center; gap: 6px; height: 38px;">
+              <input type="checkbox" id="sim-network" checked style="width: 16px; height: 16px;">
+              <label for="sim-network" style="margin: 0; cursor: pointer;">Network On</label>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+          <button class="btn btn-danger" id="btn-sim-fall">
+            <i data-lucide="trending-down"></i> Simulate MPU6050 Fall Peak
+          </button>
+          <button class="btn btn-primary" id="btn-sim-sos">
+            <i data-lucide="alert-circle"></i> Trigger SOS Event (Manual)
+          </button>
+        </div>
+      </div>
+
+      <!-- Real-Time Telemetry Graph -->
+      <div class="dashboard-card" style="padding: 15px;">
+        <div class="card-title" style="font-size: 13px; margin-bottom: 8px;">
+          <i data-lucide="activity"></i> MPU6050 Accelerometer Live
+        </div>
+        <div class="chart-container" style="height: 120px; position: relative;">
+          <canvas id="accel-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Telemetry Live Logging Terminal -->
+      <div class="dashboard-card" style="padding: 15px;">
+        <div class="card-title" style="font-size: 13px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <span><i data-lucide="terminal"></i> Telemetry Terminal Stream</span>
+          <button class="btn btn-secondary btn-icon" id="btn-clear-terminal" style="width: 20px; height: 20px; font-size: 9px;" title="Clear Logs">
+            <i data-lucide="trash-2" style="width: 10px; height: 10px;"></i>
+          </button>
+        </div>
+        <div class="terminal-console" id="sim-terminal">
+          <!-- Terminal stream -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL: REGISTER/ADD MINER -->
+  <div class="modal-overlay" id="modal-add-miner">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 700; color: #fff;">Register Miner</h3>
+        <button class="modal-close" onclick="closeModal('modal-add-miner')">&times;</button>
+      </div>
+      <form id="form-add-miner">
+        <div class="form-group">
+          <label for="add-miner-id">Miner ID (Unique)</label>
+          <input type="text" id="add-miner-id" class="form-control" placeholder="e.g. MINER_006" required>
+        </div>
+        <div class="form-group">
+          <label for="add-miner-name">Full Name</label>
+          <input type="text" id="add-miner-name" class="form-control" placeholder="John Doe" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="form-group">
+            <label for="add-miner-emp">Employee ID</label>
+            <input type="text" id="add-miner-emp" class="form-control" placeholder="EMP106">
+          </div>
+          <div class="form-group">
+            <label for="add-miner-zone">Initial Zone</label>
+            <input type="text" id="add-miner-zone" class="form-control" placeholder="ZONE_A" value="ZONE_A">
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="form-group">
+            <label for="add-miner-phone">Phone Number</label>
+            <input type="text" id="add-miner-phone" class="form-control" placeholder="+1 555-0106">
+          </div>
+          <div class="form-group">
+            <label for="add-miner-email">Email Address</label>
+            <input type="email" id="add-miner-email" class="form-control" placeholder="miner@mineguard.com">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-add-miner')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: REGISTER/ADD BAND -->
+  <div class="modal-overlay" id="modal-add-band">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 700; color: #fff;">Register Smart Band</h3>
+        <button class="modal-close" onclick="closeModal('modal-add-band')">&times;</button>
+      </div>
+      <form id="form-add-band">
+        <div class="form-group">
+          <label for="add-band-id">Band ID (Unique)</label>
+          <input type="text" id="add-band-id" class="form-control" placeholder="e.g. BAND_006" required>
+        </div>
+        <div class="form-group">
+          <label for="add-band-lora">LoRa Device Address</label>
+          <input type="text" id="add-band-lora" class="form-control" placeholder="e.g. LORA_106" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-add-band')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Register Band</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: PAIR BAND -->
+  <div class="modal-overlay" id="modal-pair-band">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 700; color: #fff;">Assign Smart Band to Miner</h3>
+        <button class="modal-close" onclick="closeModal('modal-pair-band')">&times;</button>
+      </div>
+      <form id="form-pair-band">
+        <input type="hidden" id="pair-band-id">
+        <div class="form-group">
+          <p style="font-size: 14px; margin-bottom: 12px; color: var(--text-secondary);">
+            Pairing Band: <strong id="pair-band-label" style="color: #fff;">BAND_001</strong>
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="pair-miner-select">Select Miner</label>
+          <select id="pair-miner-select" class="form-control">
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-pair-band')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Confirm Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
