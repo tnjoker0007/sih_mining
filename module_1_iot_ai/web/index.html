@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MineGuard - Module 1: IoT & AI Safety Dashboard</title>
+  <title>MineGuard AI - Sentinel Analytics (Module 1)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #090d16;
-      --card-bg: rgba(18, 25, 41, 0.75);
+      --bg-dark: #080c14;
+      --card-bg: rgba(15, 23, 42, 0.85);
       --card-border: rgba(255, 255, 255, 0.08);
-      --accent-blue: #38bdf8;
-      --accent-green: #10b981;
+      --accent-cyan: #06b6d4;
+      --accent-blue: #3b82f6;
+      --accent-safe: #10b981;
       --accent-warning: #f59e0b;
-      --accent-danger: #ef4444;
+      --accent-critical: #ef4444;
+      --accent-info: #0ea5e9;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     * {
@@ -27,104 +31,157 @@
     }
 
     body {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-sans);
       background-color: var(--bg-dark);
       background-image: 
-        radial-gradient(at 10% 10%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
-        radial-gradient(at 90% 90%, rgba(239, 68, 68, 0.08) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.9) 0px, transparent 50%);
       color: var(--text-main);
       min-height: 100vh;
-      padding: 24px;
+      display: flex;
+      flex-direction: column;
     }
 
-    header {
+    /* TOP BAR WIREFRAME */
+    .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 28px;
-      padding-bottom: 16px;
+      background: rgba(15, 23, 42, 0.95);
       border-bottom: 1px solid var(--card-border);
+      padding: 12px 28px;
+      backdrop-filter: blur(12px);
     }
 
-    .logo-container {
+    .brand-section {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, #38bdf8, #0284c7);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    .logo-badge {
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
     }
 
-    h1 {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .subtitle {
+    .mine-selector-select {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 6px;
       font-size: 13px;
-      color: var(--text-muted);
+      font-family: inherit;
+      outline: none;
     }
 
-    .badge-live {
+    .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(16, 185, 129, 0.15);
+      gap: 6px;
+      font-size: 12px;
+      color: var(--accent-safe);
+      background: rgba(16, 185, 129, 0.12);
       border: 1px solid rgba(16, 185, 129, 0.3);
-      color: var(--accent-green);
-      padding: 6px 14px;
+      padding: 4px 10px;
       border-radius: 20px;
-      font-size: 13px;
       font-weight: 600;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--accent-green);
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background: #0ea5e9;
       border-radius: 50%;
-      animation: pulse 1.8s infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
     }
 
-    @keyframes pulse {
-      0% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.2); }
-      100% { opacity: 1; transform: scale(1); }
+    /* MAIN CONTAINER */
+    .dashboard-container {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    .grid-container {
+    /* KPI CARDS WIREFRAME */
+    .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kpi-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-val {
+      font-size: 30px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      margin-top: 6px;
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* MAIN ROW: LIVE TREND & AI RISK SCORE GAUGE */
+    .main-row {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
       gap: 20px;
     }
 
     .card {
       background: var(--card-bg);
-      backdrop-filter: blur(12px);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 20px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
     }
-
-    .card:hover {
-      border-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .col-4 { grid-column: span 4; }
-    .col-6 { grid-column: span 6; }
-    .col-8 { grid-column: span 8; }
-    .col-12 { grid-column: span 12; }
 
     .card-header {
       display: flex;
@@ -134,27 +191,45 @@
     }
 
     .card-title {
-      font-size: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .time-filter {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px;
+      border-radius: 6px;
+    }
+
+    .time-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      font-size: 11px;
       font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
+      border-radius: 4px;
+      cursor: pointer;
     }
 
-    .sensor-value {
-      font-size: 38px;
-      font-weight: 800;
-      font-family: 'JetBrains Mono', monospace;
-      margin: 8px 0;
+    .time-btn.active {
+      background: var(--accent-cyan);
+      color: #000;
     }
 
-    .unit {
-      font-size: 16px;
-      color: var(--text-muted);
-      font-weight: 500;
+    canvas {
+      width: 100% !important;
+      height: 240px !important;
     }
 
-    .risk-circle-container {
+    /* AI RISK score GAUGE */
+    .gauge-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -162,288 +237,441 @@
       padding: 10px 0;
     }
 
-    .risk-score-display {
-      font-size: 48px;
+    .risk-score-big {
+      font-size: 52px;
       font-weight: 800;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
     }
 
-    .risk-status-badge {
-      margin-top: 10px;
-      padding: 6px 18px;
+    .risk-tag {
+      padding: 6px 16px;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.5px;
+      font-size: 13px;
+      margin-top: 8px;
     }
 
-    .status-safe { background: rgba(16, 185, 129, 0.18); color: var(--accent-green); border: 1px solid var(--accent-green); }
-    .status-warning { background: rgba(245, 158, 11, 0.18); color: var(--accent-warning); border: 1px solid var(--accent-warning); }
-    .status-critical { background: rgba(239, 68, 68, 0.2); color: var(--accent-danger); border: 1px solid var(--accent-danger); animation: blink 1s infinite alternate; }
+    .tag-safe { background: rgba(16, 185, 129, 0.15); color: var(--accent-safe); border: 1px solid var(--accent-safe); }
+    .tag-warning { background: rgba(245, 158, 11, 0.15); color: var(--accent-warning); border: 1px solid var(--accent-warning); }
+    .tag-critical { background: rgba(239, 68, 68, 0.2); color: var(--accent-critical); border: 1px solid var(--accent-critical); animation: pulse 1s infinite alternate; }
 
-    @keyframes blink {
-      from { opacity: 1; }
-      to { opacity: 0.6; }
+    .ai-insight-box {
+      margin-top: 16px;
+      background: rgba(6, 182, 212, 0.06);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+      color: #bae6fd;
     }
 
-    .controls-panel {
+    /* SECOND ROW: NODE HEALTH & RECENT ANOMALIES */
+    .second-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .node-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .node-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .node-title {
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .node-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .anomaly-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .anomaly-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent-cyan);
+      font-size: 12px;
+    }
+
+    .anomaly-item.critical { border-left-color: var(--accent-critical); background: rgba(239, 68, 68, 0.1); }
+
+    /* BOTTOM ROW: LATEST READINGS DATA TABLE */
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    th {
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    td {
+      font-family: var(--font-mono);
+    }
+
+    /* SIMULATION CONTROLS */
+    .simulation-bar {
       display: flex;
       gap: 12px;
-      flex-wrap: wrap;
       margin-top: 10px;
     }
 
     .btn {
-      padding: 10px 18px;
-      border-radius: 10px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
       border: 1px solid var(--card-border);
       background: rgba(255, 255, 255, 0.05);
       color: var(--text-main);
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s ease;
     }
 
-    .btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-1px);
-    }
-
-    .btn-danger { background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); color: #fca5a5; }
-    .btn-danger:hover { background: rgba(239, 68, 68, 0.35); }
-
-    .btn-success { background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); color: #6ee7b7; }
-    .btn-success:hover { background: rgba(16, 185, 129, 0.35); }
-
-    .alert-log {
-      max-height: 220px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .alert-item {
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      display: flex;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.03);
-      border-left: 3px solid var(--accent-blue);
-    }
-
-    .alert-item.critical { border-left-color: var(--accent-danger); background: rgba(239, 68, 68, 0.1); }
-    .alert-item.warning { border-left-color: var(--accent-warning); background: rgba(245, 158, 11, 0.1); }
-
-    .timestamp { font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-size: 11px; }
-
-    @media (max-width: 1024px) {
-      .col-4, .col-6, .col-8 { grid-column: span 12; }
-    }
+    .btn-danger { background: rgba(239, 68, 68, 0.2); border-color: var(--accent-critical); color: #fca5a5; }
+    .btn-success { background: rgba(16, 185, 129, 0.2); border-color: var(--accent-safe); color: #6ee7b7; }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo-container">
-      <div class="logo-icon">⛏️</div>
+  <!-- TOP BAR WIREFRAME -->
+  <div class="top-bar">
+    <div class="brand-section">
+      <div class="logo-badge">SENTINEL</div>
       <div>
-        <h1>MineGuard Safety System</h1>
-        <div class="subtitle">Module 1: IoT & AI Environmental Monitoring</div>
+        <div style="font-weight: 700; font-size: 15px;">MINEGUARD AI</div>
+        <div style="font-size: 11px; color: var(--text-muted);">Module 1: IoT Sensor Monitoring & Predictive Risk</div>
       </div>
-    </div>
-    <div class="badge-live">
-      <div class="dot"></div> REAL-TIME STREAMING
-    </div>
-  </header>
-
-  <div class="grid-container">
-
-    <!-- Risk Score Card -->
-    <div class="card col-4">
-      <div class="card-header">
-        <div class="card-title">AI Safety Risk Index</div>
-        <span id="ai-status-icon">🤖</span>
-      </div>
-      <div class="risk-circle-container">
-        <div class="risk-score-display" id="risk-score">18.5</div>
-        <div class="risk-status-badge status-safe" id="risk-badge">SAFE CONDITION</div>
-      </div>
-      <div style="font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px;">
-        AI Anomaly Engine: <span id="anomaly-reason" style="color: var(--text-main); font-weight: 500;">Normal Parameters</span>
-      </div>
+      <select class="mine-selector-select">
+        <option>Shaft #1 - Jharia Underground Mine</option>
+        <option>Shaft #2 - Raniganj Coal Belt</option>
+      </select>
     </div>
 
-    <!-- Methane Card -->
-    <div class="card col-4">
-      <div class="card-header">
-        <div class="card-title">Methane ($CH_4$) Gas</div>
-        <span>🔥</span>
+    <div class="top-actions">
+      <div class="status-pill">
+        <span style="width: 8px; height: 8px; background: var(--accent-safe); border-radius: 50%;"></span>
+        Gateway Online (99.8% Uptime)
       </div>
-      <div class="sensor-value" id="val-ch4">0.35 <span class="unit">%</span></div>
-      <div style="font-size: 12px; color: var(--text-muted);">Critical Limit: 1.5%</div>
+      <div class="user-profile">
+        <div class="avatar">DK</div>
+        <span>DineshKumar007</span>
+      </div>
     </div>
+  </div>
 
-    <!-- CO Card -->
-    <div class="card col-4">
-      <div class="card-header">
-        <div class="card-title">Carbon Monoxide ($CO$)</div>
-        <span>💨</span>
-      </div>
-      <div class="sensor-value" id="val-co">12.0 <span class="unit">ppm</span></div>
-      <div style="font-size: 12px; color: var(--text-muted);">Critical Limit: 50 ppm</div>
-    </div>
+  <div class="dashboard-container">
 
-    <!-- Vibration Card -->
-    <div class="card col-4">
-      <div class="card-header">
-        <div class="card-title">Seismic Vibration</div>
-        <span>📉</span>
+    <!-- KPI CARDS WIREFRAME -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">Total Nodes</div>
+        <div class="kpi-val">24</div>
+        <div class="kpi-sub">Active Sensor Array</div>
       </div>
-      <div class="sensor-value" id="val-vib">0.45 <span class="unit">g</span></div>
-      <div style="font-size: 12px; color: var(--text-muted);">Critical Limit: 4.5 g</div>
-    </div>
-
-    <!-- Temperature Card -->
-    <div class="card col-4">
-      <div class="card-header">
-        <div class="card-title">Temperature</div>
-        <span>🌡️</span>
+      <div class="kpi-card">
+        <div class="kpi-title">Online Nodes</div>
+        <div class="kpi-val" style="color: var(--accent-safe);">22</div>
+        <div class="kpi-sub">91.6% Connectivity</div>
       </div>
-      <div class="sensor-value" id="val-temp">26.4 <span class="unit">°C</span></div>
-      <div style="font-size: 12px; color: var(--text-muted);">Critical Limit: 50.0 °C</div>
-    </div>
-
-    <!-- Humidity Card -->
-    <div class="card col-4">
-      <div class="card-header">
-        <div class="card-title">Humidity</div>
-        <span>💧</span>
+      <div class="kpi-card">
+        <div class="kpi-title">Warning Nodes</div>
+        <div class="kpi-val" style="color: var(--accent-warning);" id="kpi-warning-cnt">2</div>
+        <div class="kpi-sub">Elevated Thresholds</div>
       </div>
-      <div class="sensor-value" id="val-humidity">64.0 <span class="unit">%</span></div>
-      <div style="font-size: 12px; color: var(--text-muted);">Warning Limit: 85.0%</div>
-    </div>
-
-    <!-- Controls Panel -->
-    <div class="card col-6">
-      <div class="card-header">
-        <div class="card-title">IoT Simulation Controls</div>
+      <div class="kpi-card">
+        <div class="kpi-title">Critical Nodes</div>
+        <div class="kpi-val" style="color: var(--accent-critical);" id="kpi-critical-cnt">0</div>
+        <div class="kpi-sub">Requires Immediate Action</div>
       </div>
-      <div class="controls-panel">
-        <button class="btn btn-danger" onclick="triggerMethaneSpike()">Simulate Methane Leak</button>
-        <button class="btn btn-danger" onclick="triggerCOSpike()">Simulate CO Spike</button>
-        <button class="btn btn-danger" onclick="triggerVibration()">Simulate Seismic Event</button>
-        <button class="btn btn-success" onclick="resetToNormal()">Reset to Safe State</button>
+      <div class="kpi-card">
+        <div class="kpi-title">Average Risk Score</div>
+        <div class="kpi-val" id="kpi-avg-risk">18.4</div>
+        <div class="kpi-sub">Mine Safety Score (0-100)</div>
       </div>
     </div>
 
-    <!-- Live Event Log -->
-    <div class="card col-6">
-      <div class="card-header">
-        <div class="card-title">Real-Time Event & Hazard Log</div>
-      </div>
-      <div class="alert-log" id="alert-log">
-        <div class="alert-item">
-          <span>System initialized. Sensor telemetry streaming active.</span>
-          <span class="timestamp">Just now</span>
+    <!-- MAIN ROW: LIVE TREND CHART & AI RISK SCORE GAUGE -->
+    <div class="main-row">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📈 Live Multi-Sensor Telemetry Trend</div>
+          <div class="time-filter">
+            <button class="time-btn active">1h</button>
+            <button class="time-btn">6h</button>
+            <button class="time-btn">24h</button>
+            <button class="time-btn">7d</button>
+          </div>
         </div>
+        <canvas id="trendChart"></canvas>
+      </div>
+
+      <!-- AI RISK GAUGE -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🤖 AI Risk Score Gauge</div>
+        </div>
+        <div class="gauge-wrapper">
+          <div class="risk-score-big" id="ai-risk-score">18.4</div>
+          <div class="risk-tag tag-safe" id="ai-risk-tag">SAFE CONDITION</div>
+        </div>
+        <div class="ai-insight-box">
+          <strong>AI Safety Insight:</strong><br>
+          <span id="ai-insight-text">Primary Driver: Methane (CH4) 0.35% within baseline. Seismic vibration normal (0.45g).</span>
+        </div>
+        
+        <div style="margin-top: 14px;">
+          <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">Simulation Controls:</div>
+          <div class="simulation-bar">
+            <button class="btn btn-danger" onclick="triggerMethaneLeak()">Gas Leak</button>
+            <button class="btn btn-danger" onclick="triggerSeismic()">Seismic Spike</button>
+            <button class="btn btn-success" onclick="resetBaseline()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECOND ROW: NODE HEALTH & RECENT ANOMALIES -->
+    <div class="second-row">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📡 Node Health & Telemetry Summary</div>
+        </div>
+        <div class="node-grid">
+          <div class="node-item">
+            <div class="node-title">Node-A1 (Methane & Temp) <span style="color: var(--accent-safe);">● Online</span></div>
+            <div class="node-meta">Battery: 94% | Signal: -62dBm | Heartbeat: 2s ago</div>
+          </div>
+          <div class="node-item">
+            <div class="node-title">Node-B2 (CO & Humidity) <span style="color: var(--accent-safe);">● Online</span></div>
+            <div class="node-meta">Battery: 88% | Signal: -68dBm | Heartbeat: 1s ago</div>
+          </div>
+          <div class="node-item">
+            <div class="node-title">Node-C3 (Seismic Accelerometer) <span style="color: var(--accent-safe);">● Online</span></div>
+            <div class="node-meta">Battery: 91% | Signal: -55dBm | Heartbeat: 3s ago</div>
+          </div>
+          <div class="node-item">
+            <div class="node-title">Node-D4 (Pressure & Gas) <span style="color: var(--accent-warning);">● Warning</span></div>
+            <div class="node-meta">Battery: 76% | Signal: -74dBm | Heartbeat: 4s ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🚨 Recent Anomaly & Alert Feed</div>
+        </div>
+        <div class="anomaly-feed" id="anomaly-feed">
+          <div class="anomaly-item">
+            <div>
+              <strong>Node-D4</strong>: Slight pressure anomaly detected (1.02 bar).
+            </div>
+            <span style="color: var(--text-muted);">Just now</span>
+          </div>
+          <div class="anomaly-item">
+            <div>
+              <strong>Node-A1</strong>: Methane baseline check completed (0.35%).
+            </div>
+            <span style="color: var(--text-muted);">2m ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW: LATEST READINGS DATA TABLE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📋 Latest Sensor Readings Data Table</div>
+        <div style="font-size: 12px; color: var(--text-muted);">Live Sync: Active</div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Node ID</th>
+              <th>Methane (CH4)</th>
+              <th>Carbon Monoxide (CO)</th>
+              <th>Vibration</th>
+              <th>Temp</th>
+              <th>Humidity</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="sensor-table-body">
+            <tr>
+              <td>12:59:04</td>
+              <td>NODE-A1</td>
+              <td>0.35 %</td>
+              <td>12.0 ppm</td>
+              <td>0.45 g</td>
+              <td>26.4 °C</td>
+              <td>64 %</td>
+              <td><span style="color: var(--accent-safe);">NORMAL</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
   </div>
 
   <script>
-    let state = {
-      ch4: 0.35,
-      co: 12.0,
-      vib: 0.45,
-      temp: 26.4,
-      humidity: 64.0,
-      mode: 'normal'
-    };
+    // Canvas Trend Chart Renderer
+    const canvas = document.getElementById('trendChart');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth - 40;
+      canvas.height = 240;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    function updateUI() {
-      // Simulate slight realistic telemetry fluctuations
-      if (state.mode === 'normal') {
-        state.ch4 = Math.max(0.1, +(state.ch4 + (Math.random() - 0.5) * 0.05).toFixed(2));
-        state.co = Math.max(5.0, +(state.co + (Math.random() - 0.5) * 1.5).toFixed(1));
-        state.vib = Math.max(0.1, +(state.vib + (Math.random() - 0.5) * 0.05).toFixed(2));
+    let chartData = [20, 22, 21, 24, 23, 25, 22, 20, 19, 21, 22, 24, 25, 23];
+
+    function drawChart() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Gridlines
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < canvas.height; i += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(canvas.width, i);
+        ctx.stroke();
       }
 
-      document.getElementById('val-ch4').innerHTML = `${state.ch4} <span class="unit">%</span>`;
-      document.getElementById('val-co').innerHTML = `${state.co} <span class="unit">ppm</span>`;
-      document.getElementById('val-vib').innerHTML = `${state.vib} <span class="unit">g</span>`;
-      document.getElementById('val-temp').innerHTML = `${state.temp} <span class="unit">°C</span>`;
-      document.getElementById('val-humidity').innerHTML = `${state.humidity} <span class="unit">%</span>`;
+      // Warning Line
+      ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(0, 80);
+      ctx.lineTo(canvas.width, 80);
+      ctx.stroke();
+      ctx.setLineDash([]);
 
-      // Calculate AI Risk Score
-      let riskScore = (state.ch4 / 1.5 * 40) + (state.co / 50 * 35) + (state.vib / 4.5 * 25);
-      riskScore = Math.min(Math.max(Math.round(riskScore * 10) / 10, 5), 100);
+      // Trend Line
+      ctx.strokeStyle = '#06b6d4';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      
+      const step = canvas.width / (chartData.length - 1);
+      chartData.forEach((val, i) => {
+        const x = i * step;
+        const y = canvas.height - (val / 100 * canvas.height);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
 
-      const riskDisplay = document.getElementById('risk-score');
-      const riskBadge = document.getElementById('risk-badge');
-      const anomalyReason = document.getElementById('anomaly-reason');
+    drawChart();
 
-      riskDisplay.innerText = riskScore;
+    let currentRisk = 18.4;
 
-      if (riskScore >= 70) {
-        riskBadge.innerText = "CRITICAL HAZARD - EVACUATE!";
-        riskBadge.className = "risk-status-badge status-critical";
-        anomalyReason.innerText = "AI Warning: Compound Gas/Structural Critical Anomaly";
-      } else if (riskScore >= 35) {
-        riskBadge.innerText = "MODERATE RISK - MONITOR";
-        riskBadge.className = "risk-status-badge status-warning";
-        anomalyReason.innerText = "Elevated sensor reading detected";
-      } else {
-        riskBadge.innerText = "SAFE CONDITION";
-        riskBadge.className = "risk-status-badge status-safe";
-        anomalyReason.innerText = "Normal Parameters";
+    function triggerMethaneLeak() {
+      currentRisk = 85.2;
+      document.getElementById('ai-risk-score').innerText = currentRisk;
+      document.getElementById('ai-risk-tag').className = 'risk-tag tag-critical';
+      document.getElementById('ai-risk-tag').innerText = 'CRITICAL HAZARD - EVACUATE';
+      document.getElementById('ai-insight-text').innerText = 'CRITICAL: Methane spike (1.85%) exceeds 1.5% emergency threshold!';
+      document.getElementById('kpi-critical-cnt').innerText = '1';
+      document.getElementById('kpi-avg-risk').innerText = '85.2';
+
+      const feed = document.getElementById('anomaly-feed');
+      feed.innerHTML = `
+        <div class="anomaly-item critical">
+          <div><strong>Node-A1</strong>: CRITICAL Methane Gas Spike (1.85%).</div>
+          <span>Just now</span>
+        </div>` + feed.innerHTML;
+
+      chartData.push(85);
+      chartData.shift();
+      drawChart();
+    }
+
+    function triggerSeismic() {
+      currentRisk = 62.0;
+      document.getElementById('ai-risk-score').innerText = currentRisk;
+      document.getElementById('ai-risk-tag').className = 'risk-tag tag-warning';
+      document.getElementById('ai-risk-tag').innerText = 'MODERATE RISK';
+      document.getElementById('ai-insight-text').innerText = 'WARNING: Seismic accelerometer registered 4.2g vibration.';
+      document.getElementById('kpi-warning-cnt').innerText = '3';
+      document.getElementById('kpi-avg-risk').innerText = '62.0';
+
+      const feed = document.getElementById('anomaly-feed');
+      feed.innerHTML = `
+        <div class="anomaly-item">
+          <div><strong>Node-C3</strong>: Seismic accelerometer vibration (4.2g).</div>
+          <span>Just now</span>
+        </div>` + feed.innerHTML;
+
+      chartData.push(62);
+      chartData.shift();
+      drawChart();
+    }
+
+    function resetBaseline() {
+      currentRisk = 18.4;
+      document.getElementById('ai-risk-score').innerText = currentRisk;
+      document.getElementById('ai-risk-tag').className = 'risk-tag tag-safe';
+      document.getElementById('ai-risk-tag').innerText = 'SAFE CONDITION';
+      document.getElementById('ai-insight-text').innerText = 'Primary Driver: Methane (CH4) 0.35% within baseline. Seismic vibration normal (0.45g).';
+      document.getElementById('kpi-critical-cnt').innerText = '0';
+      document.getElementById('kpi-warning-cnt').innerText = '2';
+      document.getElementById('kpi-avg-risk').innerText = '18.4';
+      
+      chartData = [20, 22, 21, 24, 23, 25, 22, 20, 19, 21, 22, 24, 25, 23];
+      drawChart();
+    }
+
+    setInterval(() => {
+      if (currentRisk < 30) {
+        const val = 18 + (Math.random() * 4);
+        chartData.push(val);
+        chartData.shift();
+        drawChart();
       }
-    }
-
-    function addLog(msg, type = 'normal') {
-      const logContainer = document.getElementById('alert-log');
-      const now = new Date().toLocaleTimeString();
-      const item = document.createElement('div');
-      item.className = `alert-item ${type}`;
-      item.innerHTML = `<span>${msg}</span><span class="timestamp">${now}</span>`;
-      logContainer.prepend(item);
-    }
-
-    function triggerMethaneSpike() {
-      state.mode = 'custom';
-      state.ch4 = 1.85;
-      updateUI();
-      addLog("🚨 CRITICAL ALERT: Methane spike (1.85%) detected in Shaft 1!", "critical");
-    }
-
-    function triggerCOSpike() {
-      state.mode = 'custom';
-      state.co = 58.5;
-      updateUI();
-      addLog("🚨 CRITICAL ALERT: Toxic CO elevation (58.5 ppm) detected!", "critical");
-    }
-
-    function triggerVibration() {
-      state.mode = 'custom';
-      state.vib = 4.8;
-      updateUI();
-      addLog("⚠️ WARNING: High seismic vibration (4.8g) structural risk!", "warning");
-    }
-
-    function resetToNormal() {
-      state.mode = 'normal';
-      state.ch4 = 0.35;
-      state.co = 12.0;
-      state.vib = 0.45;
-      updateUI();
-      addLog("✅ System restored to normal baseline conditions.", "normal");
-    }
-
-    setInterval(updateUI, 2500);
+    }, 3000);
   </script>
 </body>
 </html>
