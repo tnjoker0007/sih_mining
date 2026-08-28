@@ -1,0 +1,2932 @@
+{
+  "roles": [
+    {
+      "id": "ROLE_ADMIN",
+      "role_name": "Administrator",
+      "permissions": [
+        "ALL"
+      ],
+      "description": "Full system access, users, devices, mines, zones, configuration."
+    },
+    {
+      "id": "ROLE_OPERATOR",
+      "role_name": "Control Room Operator",
+      "permissions": [
+        "MONITOR_LIVE",
+        "ACK_ALERTS",
+        "BROADCAST_EMERGENCY",
+        "MANAGE_INCIDENTS"
+      ],
+      "description": "Live monitoring, alerts, mine map, miner monitoring, emergency communication."
+    },
+    {
+      "id": "ROLE_RESCUE",
+      "role_name": "Rescue Team",
+      "permissions": [
+        "VIEW_INCIDENTS",
+        "UPDATE_INCIDENTS",
+        "VIEW_MINERS",
+        "DISPATCH_STATUS"
+      ],
+      "description": "Active incidents, miner status, rescue updates and emergency coordination."
+    }
+  ],
+  "users": [
+    {
+      "id": "USR_001",
+      "username": "admin",
+      "password_hash": "admin123",
+      "full_name": "Chief Inspector Arthur Pendelton",
+      "role": "Administrator",
+      "role_id": "ROLE_ADMIN",
+      "email": "admin@mineguard.ai",
+      "phone": "+1-800-555-0199",
+      "badge_id": "BADGE-ADM-01",
+      "active": true,
+      "created_at": "2026-08-01T08:00:00.000Z"
+    },
+    {
+      "id": "USR_002",
+      "username": "operator",
+      "password_hash": "operator123",
+      "full_name": "Maya Lin (Lead Control Specialist)",
+      "role": "Control Room Operator",
+      "role_id": "ROLE_OPERATOR",
+      "email": "operator@mineguard.ai",
+      "phone": "+1-800-555-0144",
+      "badge_id": "BADGE-OPR-42",
+      "active": true,
+      "created_at": "2026-08-05T09:30:00.000Z"
+    },
+    {
+      "id": "USR_003",
+      "username": "rescue_lead",
+      "password_hash": "rescue123",
+      "full_name": "Capt. Gabriel Reyes (SAR Commander)",
+      "role": "Rescue Team",
+      "role_id": "ROLE_RESCUE",
+      "email": "rescue@mineguard.ai",
+      "phone": "+1-800-555-0188",
+      "badge_id": "BADGE-SAR-07",
+      "active": true,
+      "created_at": "2026-08-10T11:15:00.000Z"
+    }
+  ],
+  "mines": [
+    {
+      "id": "MINE_001",
+      "code": "MINE_001",
+      "name": "Apex Deep Horizon Complex",
+      "location": "Sector 9, Northern Ridge Basin",
+      "total_depth_m": 680,
+      "status": "OPERATIONAL",
+      "emergency_contact": "+1-800-MINE-911",
+      "active_shifts": "Day Shift Alpha (06:00 - 18:00)",
+      "created_at": "2026-01-15T00:00:00.000Z"
+    }
+  ],
+  "mine_zones": [
+    {
+      "id": "ZONE_A",
+      "code": "ZONE_A",
+      "mine_id": "MINE_001",
+      "name": "Shaft 1 - North Gallery",
+      "level_depth_m": 180,
+      "risk_level": "SAFE",
+      "subsidence_velocity_mm_hr": 0.12,
+      "gas_ch4_ppm": 0.15,
+      "subsidence_threshold_mm": 5,
+      "gas_threshold_ppm": 1.25,
+      "max_capacity": 30,
+      "current_occupancy": 2,
+      "evacuation_route": "Emergency Exit Stairwell A -> Portal 1",
+      "coordinates": {
+        "x": 140,
+        "y": 110,
+        "width": 220,
+        "height": 110,
+        "shape": "rect"
+      },
+      "status": "ACTIVE"
+    },
+    {
+      "id": "ZONE_B",
+      "code": "ZONE_B",
+      "mine_id": "MINE_001",
+      "name": "Sub-level 350m Extraction Face",
+      "level_depth_m": 350,
+      "risk_level": "WARNING",
+      "subsidence_velocity_mm_hr": 4.85,
+      "gas_ch4_ppm": 0.92,
+      "subsidence_threshold_mm": 5,
+      "gas_threshold_ppm": 1.25,
+      "max_capacity": 25,
+      "current_occupancy": 2,
+      "evacuation_route": "Crosscut 4B -> Secondary Incline -> Refuge Bay 1",
+      "coordinates": {
+        "x": 420,
+        "y": 130,
+        "width": 240,
+        "height": 130,
+        "shape": "rect"
+      },
+      "status": "ACTIVE"
+    },
+    {
+      "id": "ZONE_C",
+      "code": "ZONE_C",
+      "mine_id": "MINE_001",
+      "name": "Deep Shaft 2 - Conveyor Beltway",
+      "level_depth_m": 520,
+      "risk_level": "SAFE",
+      "subsidence_velocity_mm_hr": 0.45,
+      "gas_ch4_ppm": 0.35,
+      "subsidence_threshold_mm": 5,
+      "gas_threshold_ppm": 1.25,
+      "max_capacity": 20,
+      "current_occupancy": 1,
+      "evacuation_route": "Beltway Escape Rail -> Shaft 2 Cage Hoist",
+      "coordinates": {
+        "x": 130,
+        "y": 280,
+        "width": 240,
+        "height": 120,
+        "shape": "rect"
+      },
+      "status": "ACTIVE"
+    },
+    {
+      "id": "ZONE_D",
+      "code": "ZONE_D",
+      "mine_id": "MINE_001",
+      "name": "Pillar Extraction Sector 4",
+      "level_depth_m": 640,
+      "risk_level": "CRITICAL",
+      "subsidence_velocity_mm_hr": 9.8,
+      "gas_ch4_ppm": 1.85,
+      "subsidence_threshold_mm": 5,
+      "gas_threshold_ppm": 1.25,
+      "max_capacity": 15,
+      "current_occupancy": 1,
+      "evacuation_route": "Emergency Winch Way -> Refuge Chamber 2",
+      "coordinates": {
+        "x": 430,
+        "y": 300,
+        "width": 250,
+        "height": 130,
+        "shape": "rect"
+      },
+      "status": "ACTIVE"
+    },
+    {
+      "id": "ZONE_E",
+      "code": "ZONE_E",
+      "mine_id": "MINE_001",
+      "name": "Emergency Refuge Chamber 1 & 2",
+      "level_depth_m": 480,
+      "risk_level": "SAFE",
+      "subsidence_velocity_mm_hr": 0.05,
+      "gas_ch4_ppm": 0.02,
+      "subsidence_threshold_mm": 2,
+      "gas_threshold_ppm": 0.5,
+      "max_capacity": 50,
+      "current_occupancy": 0,
+      "evacuation_route": "Hermetic Air Lock -> Independent Borehole Escape System",
+      "coordinates": {
+        "x": 300,
+        "y": 210,
+        "width": 140,
+        "height": 80,
+        "shape": "rect"
+      },
+      "status": "ACTIVE"
+    }
+  ],
+  "sensor_nodes": [
+    {
+      "id": "NODE_001",
+      "code": "NODE_001",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "type": "SUBSIDENCE_RADAR",
+      "name": "Multi-Frequency InSAR Displacement Node",
+      "status": "CRITICAL",
+      "battery_pct": 88,
+      "signal_dbm": -64,
+      "last_reading": {
+        "displacement_rate_mm_hr": 12.8,
+        "cumulative_displacement_mm": 48.2,
+        "tilt_pitch_deg": 4.6,
+        "tilt_roll_deg": 3.8,
+        "timestamp": "2026-08-26T07:44:35.328Z"
+      },
+      "coordinates": {
+        "x": 500,
+        "y": 350
+      },
+      "last_seen": "2026-08-26T07:44:35.330Z"
+    },
+    {
+      "id": "NODE_002",
+      "code": "NODE_002",
+      "zone_id": "ZONE_B",
+      "zone_name": "Sub-level 350m Extraction Face",
+      "type": "TILTMETER_BOREHOLE",
+      "name": "Borehole Tri-Axial Tiltmeter & Sag Sensor",
+      "status": "WARNING",
+      "battery_pct": 94,
+      "signal_dbm": -58,
+      "last_reading": {
+        "tilt_pitch_deg": 2.9,
+        "tilt_roll_deg": 2.1,
+        "roof_sag_mm": 8.4,
+        "timestamp": "2026-08-26T07:44:35.330Z"
+      },
+      "coordinates": {
+        "x": 530,
+        "y": 180
+      },
+      "last_seen": "2026-08-26T07:44:35.330Z"
+    },
+    {
+      "id": "NODE_003",
+      "code": "NODE_003",
+      "zone_id": "ZONE_A",
+      "zone_name": "Shaft 1 - North Gallery",
+      "type": "ACOUSTIC_EMISSION",
+      "name": "Micro-Seismic Acoustic Geophone Node",
+      "status": "SAFE",
+      "battery_pct": 99,
+      "signal_dbm": -49,
+      "last_reading": {
+        "acoustic_event_count_min": 3,
+        "energy_joules": 140,
+        "dominant_freq_hz": 420,
+        "timestamp": "2026-08-26T14:19:31.119Z",
+        "displacement_rate_mm_hr": 0.3
+      },
+      "coordinates": {
+        "x": 230,
+        "y": 160
+      },
+      "last_seen": "2026-08-26T14:19:31.119Z"
+    },
+    {
+      "id": "NODE_004",
+      "code": "NODE_004",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "type": "GAS_CH4_CO",
+      "name": "NDIR Methane & Carbon Monoxide Analyzer",
+      "status": "CRITICAL",
+      "battery_pct": 79,
+      "signal_dbm": -72,
+      "last_reading": {
+        "ch4_pct": 1.85,
+        "co_ppm": 48,
+        "o2_pct": 19.1,
+        "temp_c": 32.4,
+        "timestamp": "2026-08-26T07:44:35.330Z"
+      },
+      "coordinates": {
+        "x": 600,
+        "y": 370
+      },
+      "last_seen": "2026-08-26T07:44:35.330Z"
+    },
+    {
+      "id": "NODE_005",
+      "code": "NODE_005",
+      "zone_id": "ZONE_C",
+      "zone_name": "Deep Shaft 2 - Conveyor Beltway",
+      "type": "PORE_PRESSURE",
+      "name": "Hydrostatic Pore Pressure Piezometer",
+      "status": "SAFE",
+      "battery_pct": 91,
+      "signal_dbm": -55,
+      "last_reading": {
+        "pressure_kpa": 310,
+        "water_table_depth_m": 48.6,
+        "timestamp": "2026-08-26T14:19:31.123Z",
+        "displacement_rate_mm_hr": 0.11
+      },
+      "coordinates": {
+        "x": 240,
+        "y": 330
+      },
+      "last_seen": "2026-08-26T14:19:31.123Z"
+    },
+    {
+      "id": "NODE_006",
+      "code": "NODE_006",
+      "zone_id": "ZONE_B",
+      "zone_name": "Sub-level 350m Extraction Face",
+      "type": "OPTICAL_CRACK_METER",
+      "name": "Laser Convergence Extensometer",
+      "status": "WARNING",
+      "battery_pct": 85,
+      "signal_dbm": -61,
+      "last_reading": {
+        "crack_aperture_delta_mm": 3.2,
+        "convergence_rate_mm_day": 1.8,
+        "timestamp": "2026-08-26T07:44:35.330Z"
+      },
+      "coordinates": {
+        "x": 600,
+        "y": 200
+      },
+      "last_seen": "2026-08-26T07:44:35.330Z"
+    }
+  ],
+  "miners": [
+    {
+      "id": "MINER_001",
+      "code": "MINER_001",
+      "name": "Dev Patel",
+      "role_title": "Continuous Miner Operator Lead",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "assigned_band_id": "BAND_001",
+      "blood_group": "O+",
+      "emergency_contact": "Priya Patel (+1-555-321-7890)",
+      "status": "FALL_DETECTED",
+      "vitals": {
+        "heart_rate": 138,
+        "spo2": 92,
+        "skin_temp_c": 37.8,
+        "motion_state": "MOTIONLESS",
+        "impact_g": 5.2,
+        "posture": "HORIZONTAL_PRONE"
+      },
+      "coordinates": {
+        "x": 480,
+        "y": 360
+      },
+      "last_seen": "2026-08-26T07:44:35.330Z"
+    },
+    {
+      "id": "MINER_002",
+      "code": "MINER_002",
+      "name": "Alex Chen",
+      "role_title": "Senior Blasting Engineer",
+      "zone_id": "ZONE_B",
+      "zone_name": "Sub-level 350m Extraction Face",
+      "assigned_band_id": "BAND_002",
+      "blood_group": "A+",
+      "emergency_contact": "Mei Chen (+1-555-890-1234)",
+      "status": "EVACUATING",
+      "vitals": {
+        "heart_rate": 60,
+        "spo2": 96,
+        "skin_temp_c": 36.6,
+        "motion_state": "WALKING",
+        "impact_g": 0.9,
+        "posture": "UPRIGHT"
+      },
+      "coordinates": {
+        "x": 456.16629271440803,
+        "y": 169.2929195184488
+      },
+      "last_seen": "2026-08-26T08:03:52.506Z"
+    },
+    {
+      "id": "MINER_003",
+      "code": "MINER_003",
+      "name": "Marcus Vance",
+      "role_title": "Shuttle Car Heavy Driver",
+      "zone_id": "ZONE_B",
+      "zone_name": "Sub-level 350m Extraction Face",
+      "assigned_band_id": "BAND_003",
+      "blood_group": "B+",
+      "emergency_contact": "Donna Vance (+1-555-776-5544)",
+      "status": "EVACUATING",
+      "vitals": {
+        "heart_rate": 121,
+        "spo2": 95,
+        "skin_temp_c": 36.5,
+        "motion_state": "WORKING",
+        "impact_g": 1.1,
+        "posture": "SEATED"
+      },
+      "coordinates": {
+        "x": 550.0650798277471,
+        "y": 172.13204238530594
+      },
+      "last_seen": "2026-08-26T08:02:59.923Z"
+    },
+    {
+      "id": "MINER_004",
+      "code": "MINER_004",
+      "name": "Sarah Jenkins",
+      "role_title": "Underground Ventilation Tech",
+      "zone_id": "ZONE_A",
+      "zone_name": "Shaft 1 - North Gallery",
+      "assigned_band_id": "BAND_004",
+      "blood_group": "AB-",
+      "emergency_contact": "Tom Jenkins (+1-555-667-8899)",
+      "status": "EVACUATING",
+      "vitals": {
+        "heart_rate": 98,
+        "spo2": 99,
+        "skin_temp_c": 36.4,
+        "motion_state": "WALKING",
+        "impact_g": 0.8,
+        "posture": "UPRIGHT"
+      },
+      "coordinates": {
+        "x": 201.58267854053227,
+        "y": 179.46094922055653
+      },
+      "last_seen": "2026-08-26T08:03:41.979Z"
+    },
+    {
+      "id": "MINER_005",
+      "code": "MINER_005",
+      "name": "Elena Rostova",
+      "role_title": "Geotechnical Strata Surveyor",
+      "zone_id": "ZONE_A",
+      "zone_name": "Shaft 1 - North Gallery",
+      "assigned_band_id": "BAND_005",
+      "blood_group": "O-",
+      "emergency_contact": "Viktor Rostov (+1-555-443-2211)",
+      "status": "EVACUATING",
+      "vitals": {
+        "heart_rate": 98,
+        "spo2": 100,
+        "skin_temp_c": 36.7,
+        "motion_state": "SCANNING",
+        "impact_g": 0.9,
+        "posture": "UPRIGHT"
+      },
+      "coordinates": {
+        "x": 267.11476438414655,
+        "y": 152.7043090768355
+      },
+      "last_seen": "2026-08-26T08:03:49.002Z"
+    },
+    {
+      "id": "MINER_006",
+      "code": "MINER_006",
+      "name": "Vikram Rao",
+      "role_title": "High-Voltage Mine Electrician",
+      "zone_id": "ZONE_C",
+      "zone_name": "Deep Shaft 2 - Conveyor Beltway",
+      "assigned_band_id": "BAND_006",
+      "blood_group": "B-",
+      "emergency_contact": "Ananya Rao (+1-555-112-3344)",
+      "status": "EVACUATING",
+      "vitals": {
+        "heart_rate": 123,
+        "spo2": 100,
+        "skin_temp_c": 36.5,
+        "motion_state": "STANDING",
+        "impact_g": 0.7,
+        "posture": "UPRIGHT"
+      },
+      "coordinates": {
+        "x": 212.31732487960394,
+        "y": 338.18632747825933
+      },
+      "last_seen": "2026-08-26T08:03:38.477Z"
+    }
+  ],
+  "smart_bands": [
+    {
+      "id": "BAND_001",
+      "code": "BAND_001",
+      "miner_id": "MINER_001",
+      "miner_name": "Dev Patel",
+      "battery_pct": 74,
+      "signal_strength": "MEDIUM (-78 dBm)",
+      "firmware_version": "v2.4.1-PRO",
+      "status": "WARNING",
+      "last_sync": "2026-08-26T07:44:35.330Z",
+      "last_broadcast_received": "EMERGENCY_EVACUATE"
+    },
+    {
+      "id": "BAND_002",
+      "code": "BAND_002",
+      "miner_id": "MINER_002",
+      "miner_name": "Alex Chen",
+      "battery_pct": 92,
+      "signal_strength": "STRONG (-58 dBm)",
+      "firmware_version": "v2.4.1-PRO",
+      "status": "WARNING",
+      "last_sync": "2026-08-26T07:44:35.330Z",
+      "last_broadcast_received": "EMERGENCY_EVACUATE"
+    },
+    {
+      "id": "BAND_003",
+      "code": "BAND_003",
+      "miner_id": "MINER_003",
+      "miner_name": "Marcus Vance",
+      "battery_pct": 88,
+      "signal_strength": "STRONG (-62 dBm)",
+      "firmware_version": "v2.4.1-PRO",
+      "status": "WARNING",
+      "last_sync": "2026-08-26T07:44:35.330Z",
+      "last_broadcast_received": "EMERGENCY_EVACUATE"
+    },
+    {
+      "id": "BAND_004",
+      "code": "BAND_004",
+      "miner_id": "MINER_004",
+      "miner_name": "Sarah Jenkins",
+      "battery_pct": 96,
+      "signal_strength": "STRONG (-52 dBm)",
+      "firmware_version": "v2.4.1-PRO",
+      "status": "WARNING",
+      "last_sync": "2026-08-26T07:44:35.330Z",
+      "last_broadcast_received": "EMERGENCY_EVACUATE"
+    },
+    {
+      "id": "BAND_005",
+      "code": "BAND_005",
+      "miner_id": "MINER_005",
+      "miner_name": "Elena Rostova",
+      "battery_pct": 85,
+      "signal_strength": "STRONG (-55 dBm)",
+      "firmware_version": "v2.4.1-PRO",
+      "status": "WARNING",
+      "last_sync": "2026-08-26T07:44:35.330Z",
+      "last_broadcast_received": "EMERGENCY_EVACUATE"
+    },
+    {
+      "id": "BAND_006",
+      "code": "BAND_006",
+      "miner_id": "MINER_006",
+      "miner_name": "Vikram Rao",
+      "battery_pct": 90,
+      "signal_strength": "STRONG (-60 dBm)",
+      "firmware_version": "v2.4.1-PRO",
+      "status": "WARNING",
+      "last_sync": "2026-08-26T07:44:35.330Z",
+      "last_broadcast_received": "EMERGENCY_EVACUATE"
+    }
+  ],
+  "alerts": [
+    {
+      "id": "ALERT_008",
+      "code": "ALERT_008",
+      "source": "MODULE_2_BAND",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "title": "⚠️ Miner Fall & Inactivity: Dev Patel",
+      "description": "Smart Band BAND_001 transmitted FALL_DETECTED event. Impact: 5.2G, HR: N/A bpm.",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "node_id": null,
+      "miner_id": "MINER_001",
+      "miner_name": "Dev Patel",
+      "ai_confidence": 99,
+      "data_payload": {
+        "band_id": "BAND_001",
+        "event_type": "FALL_DETECTED",
+        "impact_g": 5.2,
+        "immobile_duration_sec": null,
+        "heart_rate": 110,
+        "spo2": 96,
+        "ingested_at": "2026-08-26T08:01:04.329Z"
+      },
+      "acknowledged_by": null,
+      "acknowledged_at": null,
+      "resolved_by": null,
+      "resolved_at": null,
+      "created_at": "2026-08-26T08:01:04.329Z"
+    },
+    {
+      "id": "ALERT_007",
+      "code": "ALERT_007",
+      "source": "MODULE_1_AI",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "title": "AI Subsidence Alert: Rate 9.8 mm/hr",
+      "description": "Module 1 AI model detected rapid strata deformation in Pillar Extraction Sector 4. Immediate inspection recommended.",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "node_id": "NODE_001",
+      "miner_id": null,
+      "ai_confidence": 96,
+      "data_payload": {
+        "subsidence_velocity_mm_hr": 9.8,
+        "time_to_collapse_est_mins": 45,
+        "model_name": "MineGuard-StrataNet-AI",
+        "ingested_at": "2026-08-26T08:01:04.319Z"
+      },
+      "acknowledged_by": null,
+      "acknowledged_at": null,
+      "resolved_by": null,
+      "resolved_at": null,
+      "created_at": "2026-08-26T08:01:04.319Z"
+    },
+    {
+      "id": "ALERT_006",
+      "code": "ALERT_006",
+      "source": "MODULE_2_BAND",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "title": "⚠️ Miner Fall & Inactivity: Dev Patel",
+      "description": "Smart Band BAND_001 transmitted FALL_DETECTED event. Impact: 5.2G, HR: N/A bpm.",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "node_id": null,
+      "miner_id": "MINER_001",
+      "miner_name": "Dev Patel",
+      "ai_confidence": 99,
+      "data_payload": {
+        "band_id": "BAND_001",
+        "event_type": "FALL_DETECTED",
+        "impact_g": 5.2,
+        "immobile_duration_sec": null,
+        "heart_rate": 110,
+        "spo2": 96,
+        "ingested_at": "2026-08-26T07:45:42.384Z"
+      },
+      "acknowledged_by": null,
+      "acknowledged_at": null,
+      "resolved_by": null,
+      "resolved_at": null,
+      "created_at": "2026-08-26T07:45:42.384Z"
+    },
+    {
+      "id": "ALERT_005",
+      "code": "ALERT_005",
+      "source": "MODULE_1_AI",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "title": "AI Subsidence Alert: Rate 9.8 mm/hr",
+      "description": "Module 1 AI model detected rapid strata deformation in Pillar Extraction Sector 4. Immediate inspection recommended.",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "node_id": "NODE_001",
+      "miner_id": null,
+      "ai_confidence": 96,
+      "data_payload": {
+        "subsidence_velocity_mm_hr": 9.8,
+        "time_to_collapse_est_mins": 45,
+        "model_name": "MineGuard-StrataNet-AI",
+        "ingested_at": "2026-08-26T07:45:42.376Z"
+      },
+      "acknowledged_by": null,
+      "acknowledged_at": null,
+      "resolved_by": null,
+      "resolved_at": null,
+      "created_at": "2026-08-26T07:45:42.376Z"
+    },
+    {
+      "id": "ALERT_001",
+      "code": "ALERT_001",
+      "source": "MODULE_1_AI",
+      "severity": "CRITICAL",
+      "status": "IN_PROGRESS",
+      "title": "AI Subsidence Early Warning: Accelerated Strata Creep & Roof Sag",
+      "description": "Module 1 LSTM-InSAR model predicts imminent ceiling failure within 42 minutes. Velocity: 12.8 mm/hr (threshold: 5.0 mm/hr).",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "node_id": "NODE_001",
+      "miner_id": "MINER_001",
+      "ai_confidence": 94.8,
+      "data_payload": {
+        "subsidence_velocity_mm_hr": 12.8,
+        "time_to_collapse_est_mins": 42,
+        "affected_area_sqm": 450,
+        "model_name": "MineGuard-StrataNet-v3.1"
+      },
+      "acknowledged_by": "Maya Lin (Lead Control Specialist)",
+      "acknowledged_at": "2026-08-26T07:29:35.330Z",
+      "resolved_by": null,
+      "resolved_at": null,
+      "created_at": "2026-08-26T07:19:35.330Z"
+    },
+    {
+      "id": "ALERT_002",
+      "code": "ALERT_002",
+      "source": "MODULE_2_BAND",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "title": "Miner Fall & High-G Impact Detected on Smart Band",
+      "description": "Smart Band BAND_001 detected 5.4G sudden impact followed by complete immobility for >180s. Heart rate elevated (138 bpm).",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "node_id": "NODE_004",
+      "miner_id": "MINER_001",
+      "miner_name": "Dev Patel",
+      "ai_confidence": 98.2,
+      "data_payload": {
+        "impact_g": 5.4,
+        "immobile_duration_sec": 210,
+        "heart_rate": 138,
+        "spo2": 92,
+        "orientation": "PRONE"
+      },
+      "acknowledged_by": null,
+      "acknowledged_at": null,
+      "resolved_by": null,
+      "resolved_at": null,
+      "created_at": "2026-08-26T07:36:35.330Z"
+    },
+    {
+      "id": "ALERT_003",
+      "code": "ALERT_003",
+      "source": "MODULE_1_AI",
+      "severity": "WARNING",
+      "status": "ACKNOWLEDGED",
+      "title": "Micro-Seismic Fracture Density Exceeded Warning Threshold",
+      "description": "Sub-level 350m acoustic emission array recorded 42 high-frequency energy releases within 10 minutes.",
+      "zone_id": "ZONE_B",
+      "zone_name": "Sub-level 350m Extraction Face",
+      "node_id": "NODE_002",
+      "miner_id": null,
+      "ai_confidence": 88.5,
+      "data_payload": {
+        "event_rate_per_min": 4.2,
+        "b_value_reduction": 0.35,
+        "crack_propagation_vector": "North-East 34 deg"
+      },
+      "acknowledged_by": "Maya Lin (Lead Control Specialist)",
+      "acknowledged_at": "2026-08-26T07:04:35.330Z",
+      "resolved_by": null,
+      "resolved_at": null,
+      "created_at": "2026-08-26T06:49:35.330Z"
+    },
+    {
+      "id": "ALERT_004",
+      "code": "ALERT_004",
+      "source": "SENSOR_NODE",
+      "severity": "INFO",
+      "status": "RESOLVED",
+      "title": "Conveyor Beltway Ventilation Airflow Stabilized",
+      "description": "Auxiliary booster fan #3 restored nominal differential pressure at Shaft 2 intake.",
+      "zone_id": "ZONE_C",
+      "zone_name": "Deep Shaft 2 - Conveyor Beltway",
+      "node_id": "NODE_005",
+      "miner_id": null,
+      "ai_confidence": 99,
+      "data_payload": {
+        "airflow_m3_s": 48.5,
+        "differential_pa": 120
+      },
+      "acknowledged_by": "Arthur Pendelton",
+      "acknowledged_at": "2026-08-26T04:44:35.330Z",
+      "resolved_by": "Arthur Pendelton",
+      "resolved_at": "2026-08-26T05:44:35.330Z",
+      "created_at": "2026-08-26T03:44:35.330Z"
+    }
+  ],
+  "alert_history": [
+    {
+      "id": "AH_264332",
+      "alert_id": "ALERT_008",
+      "action": "MODULE_2_BAND_INGESTION",
+      "changed_by": "Module 2 Smart Band Gateway",
+      "notes": "FALL_DETECTED event recorded for Dev Patel.",
+      "timestamp": "2026-08-26T08:01:04.332Z"
+    },
+    {
+      "id": "AH_264322",
+      "alert_id": "ALERT_007",
+      "action": "MODULE_1_AI_INGESTION",
+      "changed_by": "Module 1 InSAR/IoT Gateway",
+      "notes": "AI subsidence alert received with confidence 96%.",
+      "timestamp": "2026-08-26T08:01:04.322Z"
+    },
+    {
+      "id": "AH_342387",
+      "alert_id": "ALERT_006",
+      "action": "MODULE_2_BAND_INGESTION",
+      "changed_by": "Module 2 Smart Band Gateway",
+      "notes": "FALL_DETECTED event recorded for Dev Patel.",
+      "timestamp": "2026-08-26T07:45:42.387Z"
+    },
+    {
+      "id": "AH_342378",
+      "alert_id": "ALERT_005",
+      "action": "MODULE_1_AI_INGESTION",
+      "changed_by": "Module 1 InSAR/IoT Gateway",
+      "notes": "AI subsidence alert received with confidence 96%.",
+      "timestamp": "2026-08-26T07:45:42.378Z"
+    },
+    {
+      "id": "AH_001",
+      "alert_id": "ALERT_001",
+      "action": "AI_INGESTION",
+      "changed_by": "System: Module 1 AI InSAR Core",
+      "notes": "Risk score calculated at 94.8% probability. Subsidence threshold breached.",
+      "timestamp": "2026-08-26T07:19:35.330Z"
+    },
+    {
+      "id": "AH_002",
+      "alert_id": "ALERT_001",
+      "action": "ACKNOWLEDGED",
+      "changed_by": "Maya Lin",
+      "notes": "Operator verified InSAR reading with geotechnical node NODE_001. Initiated incident INCIDENT_001.",
+      "timestamp": "2026-08-26T07:29:35.330Z"
+    },
+    {
+      "id": "AH_003",
+      "alert_id": "ALERT_002",
+      "action": "BAND_SOS_INGESTION",
+      "changed_by": "System: Module 2 Band Gateway",
+      "notes": "High-G fall event telemetry received from BAND_001 (Dev Patel). Audio buzzer queued.",
+      "timestamp": "2026-08-26T07:36:35.330Z"
+    }
+  ],
+  "rescue_teams": [
+    {
+      "id": "RESCUE_01",
+      "code": "RESCUE_01",
+      "name": "Alpha Strike Tactical Extraction Squad",
+      "lead_user_name": "Capt. Gabriel Reyes",
+      "team_size": 6,
+      "specialization": "HEAVY_EXTRACTION & STRATA COLLAPSE",
+      "status": "DISPATCHED",
+      "active_incident_id": "INCIDENT_001",
+      "assigned_zone_id": "ZONE_D",
+      "equipment": [
+        "Hydraulic Spreader Set",
+        "Self-Contained Breathing Apparatus (4hr SCBA)",
+        "Thermal Imaging Camera",
+        "Mobile Geophone Sniffer",
+        "Kevlar Extraction Litter"
+      ],
+      "eta_minutes": 12,
+      "last_radio_check": "Radio Signal Solid at Level 4 Transit Point"
+    },
+    {
+      "id": "RESCUE_02",
+      "code": "RESCUE_02",
+      "name": "Bravo Medic & Hazmat Trauma Unit",
+      "lead_user_name": "Dr. Evelyn Ward",
+      "team_size": 4,
+      "specialization": "PARAMEDIC_TRAUMA & HAZMAT_GAS",
+      "status": "STANDBY",
+      "active_incident_id": null,
+      "assigned_zone_id": null,
+      "equipment": [
+        "Advanced Portable Defibrillator",
+        "Multi-Gas Scrubber Masks",
+        "Blood Infusion Kits",
+        "Pressurized Oxygen Tents"
+      ],
+      "eta_minutes": 0,
+      "last_radio_check": "Stationed at Surface Medical Staging Bay"
+    },
+    {
+      "id": "RESCUE_03",
+      "code": "RESCUE_03",
+      "name": "Charlie Underground Search & Drone Recon",
+      "lead_user_name": "Lt. Tariq Al-Mansoor",
+      "team_size": 5,
+      "specialization": "RAPID_RESPONSE & MINE_UAV_RECON",
+      "status": "AVAILABLE",
+      "active_incident_id": null,
+      "assigned_zone_id": null,
+      "equipment": [
+        "Autonomous LiDAR Quadcopters",
+        "Borehole Inspection Snakes",
+        "Fibre-Optic Communication Spools"
+      ],
+      "eta_minutes": 0,
+      "last_radio_check": "Ready in Central Equipment Armory"
+    }
+  ],
+  "rescue_incidents": [
+    {
+      "id": "INCIDENT_001",
+      "code": "INCIDENT_001",
+      "alert_id": "ALERT_001",
+      "title": "Sector 4 Strata Instability & Miner Trapped Incident",
+      "zone_id": "ZONE_D",
+      "zone_name": "Pillar Extraction Sector 4",
+      "severity": "CRITICAL",
+      "status": "RESCUE_IN_PROGRESS",
+      "assigned_team_id": "RESCUE_01",
+      "assigned_team_name": "Alpha Strike Tactical Extraction Squad",
+      "affected_miners": [
+        "MINER_001"
+      ],
+      "affected_miners_count": 1,
+      "incident_lead": "Capt. Gabriel Reyes",
+      "created_at": "2026-08-26T07:24:35.330Z",
+      "closed_at": null,
+      "summary_report": null,
+      "evacuation_order_issued": true
+    }
+  ],
+  "incident_updates": [
+    {
+      "id": "INC_UPD_001",
+      "incident_id": "INCIDENT_001",
+      "user_name": "Maya Lin",
+      "role": "Control Room Operator",
+      "status_snapshot": "NEW",
+      "notes": "Incident initiated following correlation between Module 1 AI Subsidence model and Module 2 fall alert for Dev Patel.",
+      "action_taken": "Declared Level 2 Underground Emergency. Alerted SAR Command.",
+      "timestamp": "2026-08-26T07:24:35.330Z"
+    },
+    {
+      "id": "INC_UPD_002",
+      "incident_id": "INCIDENT_001",
+      "user_name": "Capt. Gabriel Reyes",
+      "role": "Rescue Team Lead",
+      "status_snapshot": "RESCUE_TEAM_ASSIGNED",
+      "notes": "Alpha Strike team mustered with heavy hydraulic equipment and long-duration SCBA gear.",
+      "action_taken": "Assigned Rescue Team RESCUE_01. Team briefed on Zone D structural weaknesses.",
+      "timestamp": "2026-08-26T07:30:35.330Z"
+    },
+    {
+      "id": "INC_UPD_003",
+      "incident_id": "INCIDENT_001",
+      "user_name": "Capt. Gabriel Reyes",
+      "role": "Rescue Team Lead",
+      "status_snapshot": "RESCUE_IN_PROGRESS",
+      "notes": "Rescue Team entered Sector 4 via secondary shaft bypass. Radio contact established with trapped miner beacon.",
+      "action_taken": "Deploying laser rangefinders to confirm roof stability before litter extraction.",
+      "timestamp": "2026-08-26T07:39:35.330Z"
+    }
+  ],
+  "band_broadcasts": [
+    {
+      "id": "BCAST_063",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:59.578Z"
+    },
+    {
+      "id": "BCAST_062",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:59.250Z"
+    },
+    {
+      "id": "BCAST_061",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:58.925Z"
+    },
+    {
+      "id": "BCAST_060",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:58.594Z"
+    },
+    {
+      "id": "BCAST_059",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:57.973Z"
+    },
+    {
+      "id": "BCAST_058",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:56.913Z"
+    },
+    {
+      "id": "BCAST_057",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:56.685Z"
+    },
+    {
+      "id": "BCAST_056",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:56.467Z"
+    },
+    {
+      "id": "BCAST_055",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:56.264Z"
+    },
+    {
+      "id": "BCAST_054",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:56.065Z"
+    },
+    {
+      "id": "BCAST_053",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:55.867Z"
+    },
+    {
+      "id": "BCAST_052",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:55.655Z"
+    },
+    {
+      "id": "BCAST_051",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:50.549Z"
+    },
+    {
+      "id": "BCAST_050",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:50.343Z"
+    },
+    {
+      "id": "BCAST_049",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:50.190Z"
+    },
+    {
+      "id": "BCAST_048",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:50.041Z"
+    },
+    {
+      "id": "BCAST_047",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:49.888Z"
+    },
+    {
+      "id": "BCAST_046",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:49.704Z"
+    },
+    {
+      "id": "BCAST_045",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:49.553Z"
+    },
+    {
+      "id": "BCAST_044",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:49.380Z"
+    },
+    {
+      "id": "BCAST_043",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:49.195Z"
+    },
+    {
+      "id": "BCAST_042",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:49.070Z"
+    },
+    {
+      "id": "BCAST_041",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:48.918Z"
+    },
+    {
+      "id": "BCAST_040",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:48.770Z"
+    },
+    {
+      "id": "BCAST_039",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:48.625Z"
+    },
+    {
+      "id": "BCAST_038",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:48.223Z"
+    },
+    {
+      "id": "BCAST_037",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:47.579Z"
+    },
+    {
+      "id": "BCAST_036",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:47.442Z"
+    },
+    {
+      "id": "BCAST_035",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:47.300Z"
+    },
+    {
+      "id": "BCAST_034",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:47.138Z"
+    },
+    {
+      "id": "BCAST_033",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:47.007Z"
+    },
+    {
+      "id": "BCAST_032",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:44.322Z"
+    },
+    {
+      "id": "BCAST_031",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:06:39.582Z"
+    },
+    {
+      "id": "BCAST_030",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_002"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_002"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:54.961Z"
+    },
+    {
+      "id": "BCAST_029",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_005"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Elena Rostova: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_005"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:49.519Z"
+    },
+    {
+      "id": "BCAST_028",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_004"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Sarah Jenkins: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_004"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:44.056Z"
+    },
+    {
+      "id": "BCAST_027",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_006"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Vikram Rao: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_006"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:38.521Z"
+    },
+    {
+      "id": "BCAST_026",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_001"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Dev Patel: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_001"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:33.451Z"
+    },
+    {
+      "id": "BCAST_025",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:22.407Z"
+    },
+    {
+      "id": "BCAST_024",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:22.238Z"
+    },
+    {
+      "id": "BCAST_023",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:22.118Z"
+    },
+    {
+      "id": "BCAST_022",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:21.968Z"
+    },
+    {
+      "id": "BCAST_021",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:21.796Z"
+    },
+    {
+      "id": "BCAST_020",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:21.478Z"
+    },
+    {
+      "id": "BCAST_019",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:21.067Z"
+    },
+    {
+      "id": "BCAST_018",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:20.629Z"
+    },
+    {
+      "id": "BCAST_017",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:20.164Z"
+    },
+    {
+      "id": "BCAST_016",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:19.754Z"
+    },
+    {
+      "id": "BCAST_015",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:19.284Z"
+    },
+    {
+      "id": "BCAST_014",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:18.831Z"
+    },
+    {
+      "id": "BCAST_013",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:18.238Z"
+    },
+    {
+      "id": "BCAST_012",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:17.726Z"
+    },
+    {
+      "id": "BCAST_011",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:17.071Z"
+    },
+    {
+      "id": "BCAST_010",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:16.480Z"
+    },
+    {
+      "id": "BCAST_009",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:15.635Z"
+    },
+    {
+      "id": "BCAST_008",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:14.557Z"
+    },
+    {
+      "id": "BCAST_007",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:12.734Z"
+    },
+    {
+      "id": "BCAST_006",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:10.124Z"
+    },
+    {
+      "id": "BCAST_005",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:07.010Z"
+    },
+    {
+      "id": "BCAST_004",
+      "sender_name": "Chief Inspector Arthur Pendelton",
+      "target_type": "SPECIFIC_BANDS",
+      "target_id": [
+        "BAND_003"
+      ],
+      "target_name": "Selected Bands (1)",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_003"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:03:02.337Z"
+    },
+    {
+      "id": "BCAST_003",
+      "sender_name": "Control Room Command",
+      "target_type": "ZONE",
+      "target_id": "ZONE_D",
+      "target_name": "Pillar Extraction Sector 4",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "TEST EVACUATION SIGNAL",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_001"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T08:01:04.342Z"
+    },
+    {
+      "id": "BCAST_002",
+      "sender_name": "Control Room Command",
+      "target_type": "ZONE",
+      "target_id": "ZONE_D",
+      "target_name": "Pillar Extraction Sector 4",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "TEST EVACUATION SIGNAL",
+      "vibrate_pattern": "PULSED_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_001"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T07:45:42.398Z"
+    },
+    {
+      "id": "BCAST_001",
+      "sender_name": "Control Room (Maya Lin)",
+      "target_type": "ZONE",
+      "target_id": "ZONE_D",
+      "target_name": "Pillar Extraction Sector 4",
+      "alert_level": "EMERGENCY_EVACUATE",
+      "message": "CRITICAL ALERT: ROOF INSTABILITY DETECTED. CEASE WORK AND EVACUATE TO REFUGE CHAMBER 2 IMMEDIATELY.",
+      "vibrate_pattern": "CONTINUOUS_HIGH_FREQUENCY",
+      "audio_siren": true,
+      "sent_to_bands": [
+        "BAND_001"
+      ],
+      "acknowledged_bands": [],
+      "timestamp": "2026-08-26T07:26:35.330Z"
+    }
+  ],
+  "report_metadata": [
+    {
+      "id": "REP_264354",
+      "report_type": "SENSOR_EVENTS",
+      "title": "Module 1: IoT Sensor Telemetry & Subsidence Analysis Report",
+      "generated_by": "Arthur Pendelton (Admin)",
+      "date_from": "2026-07-27",
+      "date_to": "2026-08-26",
+      "summary": "Evaluated 6 geotechnical and subsidence monitoring sensor arrays across underground sectors.",
+      "data": {
+        "nodes_analyzed": [
+          {
+            "id": "NODE_001",
+            "code": "NODE_001",
+            "zone_id": "ZONE_D",
+            "zone_name": "Pillar Extraction Sector 4",
+            "type": "SUBSIDENCE_RADAR",
+            "name": "Multi-Frequency InSAR Displacement Node",
+            "status": "CRITICAL",
+            "battery_pct": 88,
+            "signal_dbm": -64,
+            "last_reading": {
+              "displacement_rate_mm_hr": 12.8,
+              "cumulative_displacement_mm": 48.2,
+              "tilt_pitch_deg": 4.6,
+              "tilt_roll_deg": 3.8,
+              "timestamp": "2026-08-26T07:44:35.328Z"
+            },
+            "coordinates": {
+              "x": 500,
+              "y": 350
+            },
+            "last_seen": "2026-08-26T07:44:35.330Z"
+          },
+          {
+            "id": "NODE_002",
+            "code": "NODE_002",
+            "zone_id": "ZONE_B",
+            "zone_name": "Sub-level 350m Extraction Face",
+            "type": "TILTMETER_BOREHOLE",
+            "name": "Borehole Tri-Axial Tiltmeter & Sag Sensor",
+            "status": "WARNING",
+            "battery_pct": 94,
+            "signal_dbm": -58,
+            "last_reading": {
+              "tilt_pitch_deg": 2.9,
+              "tilt_roll_deg": 2.1,
+              "roof_sag_mm": 8.4,
+              "timestamp": "2026-08-26T07:44:35.330Z"
+            },
+            "coordinates": {
+              "x": 530,
+              "y": 180
+            },
+            "last_seen": "2026-08-26T07:44:35.330Z"
+          },
+          {
+            "id": "NODE_003",
+            "code": "NODE_003",
+            "zone_id": "ZONE_A",
+            "zone_name": "Shaft 1 - North Gallery",
+            "type": "ACOUSTIC_EMISSION",
+            "name": "Micro-Seismic Acoustic Geophone Node",
+            "status": "SAFE",
+            "battery_pct": 99,
+            "signal_dbm": -49,
+            "last_reading": {
+              "acoustic_event_count_min": 3,
+              "energy_joules": 140,
+              "dominant_freq_hz": 420,
+              "timestamp": "2026-08-26T14:19:31.119Z",
+              "displacement_rate_mm_hr": 0.3
+            },
+            "coordinates": {
+              "x": 230,
+              "y": 160
+            },
+            "last_seen": "2026-08-26T14:19:31.119Z"
+          },
+          {
+            "id": "NODE_004",
+            "code": "NODE_004",
+            "zone_id": "ZONE_D",
+            "zone_name": "Pillar Extraction Sector 4",
+            "type": "GAS_CH4_CO",
+            "name": "NDIR Methane & Carbon Monoxide Analyzer",
+            "status": "CRITICAL",
+            "battery_pct": 79,
+            "signal_dbm": -72,
+            "last_reading": {
+              "ch4_pct": 1.85,
+              "co_ppm": 48,
+              "o2_pct": 19.1,
+              "temp_c": 32.4,
+              "timestamp": "2026-08-26T07:44:35.330Z"
+            },
+            "coordinates": {
+              "x": 600,
+              "y": 370
+            },
+            "last_seen": "2026-08-26T07:44:35.330Z"
+          },
+          {
+            "id": "NODE_005",
+            "code": "NODE_005",
+            "zone_id": "ZONE_C",
+            "zone_name": "Deep Shaft 2 - Conveyor Beltway",
+            "type": "PORE_PRESSURE",
+            "name": "Hydrostatic Pore Pressure Piezometer",
+            "status": "SAFE",
+            "battery_pct": 91,
+            "signal_dbm": -55,
+            "last_reading": {
+              "pressure_kpa": 310,
+              "water_table_depth_m": 48.6,
+              "timestamp": "2026-08-26T14:19:31.123Z",
+              "displacement_rate_mm_hr": 0.11
+            },
+            "coordinates": {
+              "x": 240,
+              "y": 330
+            },
+            "last_seen": "2026-08-26T14:19:31.123Z"
+          },
+          {
+            "id": "NODE_006",
+            "code": "NODE_006",
+            "zone_id": "ZONE_B",
+            "zone_name": "Sub-level 350m Extraction Face",
+            "type": "OPTICAL_CRACK_METER",
+            "name": "Laser Convergence Extensometer",
+            "status": "WARNING",
+            "battery_pct": 85,
+            "signal_dbm": -61,
+            "last_reading": {
+              "crack_aperture_delta_mm": 3.2,
+              "convergence_rate_mm_day": 1.8,
+              "timestamp": "2026-08-26T07:44:35.330Z"
+            },
+            "coordinates": {
+              "x": 600,
+              "y": 200
+            },
+            "last_seen": "2026-08-26T07:44:35.330Z"
+          }
+        ],
+        "average_displacement_rate": "3.42 mm/hr",
+        "max_gas_concentration_ch4": "1.85%",
+        "sensor_health_score": "94.2%",
+        "recommended_bolting_actions": [
+          "Pillar Extraction Sector 4 (ZONE_D)",
+          "Sub-level 350m (ZONE_B)"
+        ]
+      },
+      "file_name": "MineGuard_SENSOR_EVENTS_2026-08-26.pdf",
+      "created_at": "2026-08-26T08:01:04.354Z"
+    },
+    {
+      "id": "REP_342408",
+      "report_type": "SENSOR_EVENTS",
+      "title": "Module 1: IoT Sensor Telemetry & Subsidence Analysis Report",
+      "generated_by": "Arthur Pendelton (Admin)",
+      "date_from": "2026-07-27",
+      "date_to": "2026-08-26",
+      "summary": "Evaluated 6 geotechnical and subsidence monitoring sensor arrays across underground sectors.",
+      "data": {
+        "nodes_analyzed": [
+          {
+            "id": "NODE_001",
+            "code": "NODE_001",
+            "zone_id": "ZONE_D",
+            "zone_name": "Pillar Extraction Sector 4",
+            "type": "SUBSIDENCE_RADAR",
+            "name": "Multi-Frequency InSAR Displacement Node",
+            "status": "CRITICAL",
+            "battery_pct": 88,
+            "signal_dbm": -64,
+            "last_reading": {
+              "displacement_rate_mm_hr": 12.8,
+              "cumulative_displacement_mm": 48.2,
+              "tilt_pitch_deg": 4.6,
+              "tilt_roll_deg": 3.8,
+              "timestamp": "2026-08-26T07:44:35.328Z"
+            },
+            "coordinates": {
+              "x": 500,
+              "y": 350
+            },
+            "last_seen": "2026-08-26T07:44:35.330Z"
+          },
+          {
+            "id": "NODE_002",
+            "code": "NODE_002",
+            "zone_id": "ZONE_B",
+            "zone_name": "Sub-level 350m Extraction Face",
+            "type": "TILTMETER_BOREHOLE",
+            "name": "Borehole Tri-Axial Tiltmeter & Sag Sensor",
+            "status": "WARNING",
+            "battery_pct": 94,
+            "signal_dbm": -58,
+            "last_reading": {
+              "tilt_pitch_deg": 2.9,
+              "tilt_roll_deg": 2.1,
+              "roof_sag_mm": 8.4,
+              "timestamp": "2026-08-26T07:44:35.330Z"
+            },
+            "coordinates": {
+              "x": 530,
+              "y": 180
+            },
+            "last_seen": "2026-08-26T07:44:35.330Z"
+          },
+          {
+            "id": "NODE_003",
+            "code": "NODE_003",
+            "zone_id": "ZONE_A",
+            "zone_name": "Shaft 1 - North Gallery",
+            "type": "ACOUSTIC_EMISSION",
+            "name": "Micro-Seismic Acoustic Geophone Node",
+            "status": "SAFE",
+            "battery_pct": 99,
+            "signal_dbm": -49,
+            "last_reading": {
+              "acoustic_event_count_min": 3,
+              "energy_joules": 140,
+              "dominant_freq_hz": 420,
+              "timestamp": "2026-08-26T08:00:12.858Z",
+              "displacement_rate_mm_hr": 0.09
+            },
+            "coordinates": {
+              "x": 230,
+              "y": 160
+            },
+            "last_seen": "2026-08-26T08:00:12.858Z"
+          },
+          {
+            "id": "NODE_004",
+            "code": "NODE_004",
+            "zone_id": "ZONE_D",
+            "zone_name": "Pillar Extraction Sector 4",
+            "type": "GAS_CH4_CO",
+            "name": "NDIR Methane & Carbon Monoxide Analyzer",
+            "status": "CRITICAL",
+            "battery_pct": 79,
+            "signal_dbm": -72,
+            "last_reading": {
+              "ch4_pct": 1.85,
+              "co_ppm": 48,
+              "o2_pct": 19.1,
+              "temp_c": 32.4,
+              "timestamp": "2026-08-26T07:44:35.330Z"
+            },
+            "coordinates": {
+              "x": 600,
+              "y": 370
+            },
+            "last_seen": "2026-08-26T07:44:35.330Z"
+          },
+          {
+            "id": "NODE_005",
+            "code": "NODE_005",
+            "zone_id": "ZONE_C",
+            "zone_name": "Deep Shaft 2 - Conveyor Beltway",
+            "type": "PORE_PRESSURE",
+            "name": "Hydrostatic Pore Pressure Piezometer",
+            "status": "SAFE",
+            "battery_pct": 91,
+            "signal_dbm": -55,
+            "last_reading": {
+              "pressure_kpa": 310,
+              "water_table_depth_m": 48.6,
+              "timestamp": "2026-08-26T08:00:12.859Z",
+              "displacement_rate_mm_hr": 0.21
+            },
+            "coordinates": {
+              "x": 240,
+              "y": 330
+            },
+            "last_seen": "2026-08-26T08:00:12.859Z"
+          },
+          {
+            "id": "NODE_006",
+            "code": "NODE_006",
+            "zone_id": "ZONE_B",
+            "zone_name": "Sub-level 350m Extraction Face",
+            "type": "OPTICAL_CRACK_METER",
+            "name": "Laser Convergence Extensometer",
+            "status": "WARNING",
+            "battery_pct": 85,
+            "signal_dbm": -61,
+            "last_reading": {
+              "crack_aperture_delta_mm": 3.2,
+              "convergence_rate_mm_day": 1.8,
+              "timestamp": "2026-08-26T07:44:35.330Z"
+            },
+            "coordinates": {
+              "x": 600,
+              "y": 200
+            },
+            "last_seen": "2026-08-26T07:44:35.330Z"
+          }
+        ],
+        "average_displacement_rate": "3.42 mm/hr",
+        "max_gas_concentration_ch4": "1.85%",
+        "sensor_health_score": "94.2%",
+        "recommended_bolting_actions": [
+          "Pillar Extraction Sector 4 (ZONE_D)",
+          "Sub-level 350m (ZONE_B)"
+        ]
+      },
+      "file_name": "MineGuard_SENSOR_EVENTS_2026-08-26.pdf",
+      "created_at": "2026-08-26T07:45:42.408Z"
+    },
+    {
+      "id": "REP_001",
+      "report_type": "SUBSIDENCE_PREDICTION",
+      "title": "Weekly Module 1 InSAR & Strata Subsidence Correlation Report",
+      "generated_by": "Arthur Pendelton",
+      "date_from": "2026-08-19",
+      "date_to": "2026-08-26",
+      "summary": "Detected localized subsidence anomalies in Sector 4 and Sub-level 350m. Recommended immediate pillar bolting reinforcement.",
+      "file_name": "MineGuard_Subsidence_Report_2026_W34.pdf",
+      "created_at": "2026-08-24T07:44:35.330Z"
+    },
+    {
+      "id": "REP_002",
+      "report_type": "MINER_SAFETY_AUDIT",
+      "title": "Module 2 Smart Band Safety & Biometric Incident Log",
+      "generated_by": "Maya Lin",
+      "date_from": "2026-08-19",
+      "date_to": "2026-08-26",
+      "summary": "Total underground hours: 1,840. Fall events: 1. SOS events: 0. Average battery compliance: 96.4%.",
+      "file_name": "MineGuard_Miner_Safety_Audit_2026.pdf",
+      "created_at": "2026-08-25T07:44:35.330Z"
+    }
+  ],
+  "system_settings": {
+    "mine_id": "MINE_001",
+    "auto_escalate_critical_alerts": true,
+    "audio_alarm_enabled": true,
+    "audio_alarm_volume": 80,
+    "module_1_webhook_url": "http://localhost:5000/api/alerts/ai",
+    "module_2_webhook_url": "http://localhost:5000/api/alerts/miner",
+    "telemetry_poll_interval_sec": 3,
+    "ai_confidence_threshold_pct": 85,
+    "emergency_broadcast_repeat_sec": 15,
+    "evacuation_siren_waveform": "PULSED_SWEEP"
+  },
+  "audit_logs": [
+    {
+      "id": "AUD_619615",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:59.615Z"
+    },
+    {
+      "id": "AUD_619259",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:59.259Z"
+    },
+    {
+      "id": "AUD_618933",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:58.933Z"
+    },
+    {
+      "id": "AUD_618600",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:58.600Z"
+    },
+    {
+      "id": "AUD_617983",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:57.983Z"
+    },
+    {
+      "id": "AUD_616919",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:56.919Z"
+    },
+    {
+      "id": "AUD_616694",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:56.694Z"
+    },
+    {
+      "id": "AUD_616474",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:56.474Z"
+    },
+    {
+      "id": "AUD_616271",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:56.271Z"
+    },
+    {
+      "id": "AUD_616071",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:56.071Z"
+    },
+    {
+      "id": "AUD_615872",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:55.872Z"
+    },
+    {
+      "id": "AUD_615666",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:55.666Z"
+    },
+    {
+      "id": "AUD_610556",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:50.556Z"
+    },
+    {
+      "id": "AUD_610350",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:50.350Z"
+    },
+    {
+      "id": "AUD_610196",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:50.196Z"
+    },
+    {
+      "id": "AUD_610072",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:50.072Z"
+    },
+    {
+      "id": "AUD_609897",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:49.897Z"
+    },
+    {
+      "id": "AUD_609710",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:49.710Z"
+    },
+    {
+      "id": "AUD_609585",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:49.585Z"
+    },
+    {
+      "id": "AUD_609393",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:49.393Z"
+    },
+    {
+      "id": "AUD_609204",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:49.204Z"
+    },
+    {
+      "id": "AUD_609076",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:49.076Z"
+    },
+    {
+      "id": "AUD_608926",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:48.926Z"
+    },
+    {
+      "id": "AUD_608776",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:48.776Z"
+    },
+    {
+      "id": "AUD_608656",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:48.656Z"
+    },
+    {
+      "id": "AUD_608230",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:48.231Z"
+    },
+    {
+      "id": "AUD_607588",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:47.588Z"
+    },
+    {
+      "id": "AUD_607448",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:47.448Z"
+    },
+    {
+      "id": "AUD_607344",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:47.344Z"
+    },
+    {
+      "id": "AUD_607145",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:47.145Z"
+    },
+    {
+      "id": "AUD_607012",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:47.012Z"
+    },
+    {
+      "id": "AUD_604328",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:44.328Z"
+    },
+    {
+      "id": "AUD_599589",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:06:39.589Z"
+    },
+    {
+      "id": "AUD_434969",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Alex Chen: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:54.969Z"
+    },
+    {
+      "id": "AUD_429525",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Elena Rostova: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:49.525Z"
+    },
+    {
+      "id": "AUD_424062",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Sarah Jenkins: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:44.062Z"
+    },
+    {
+      "id": "AUD_418528",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Vikram Rao: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:38.528Z"
+    },
+    {
+      "id": "AUD_413454",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Dev Patel: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:33.454Z"
+    },
+    {
+      "id": "AUD_402412",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:22.412Z"
+    },
+    {
+      "id": "AUD_402243",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:22.243Z"
+    },
+    {
+      "id": "AUD_402125",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:22.125Z"
+    },
+    {
+      "id": "AUD_401975",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:21.975Z"
+    },
+    {
+      "id": "AUD_401803",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:21.803Z"
+    },
+    {
+      "id": "AUD_401497",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:21.497Z"
+    },
+    {
+      "id": "AUD_401098",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:21.098Z"
+    },
+    {
+      "id": "AUD_400634",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:20.634Z"
+    },
+    {
+      "id": "AUD_400169",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:20.169Z"
+    },
+    {
+      "id": "AUD_399761",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:19.761Z"
+    },
+    {
+      "id": "AUD_399290",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:19.290Z"
+    },
+    {
+      "id": "AUD_398836",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:18.836Z"
+    },
+    {
+      "id": "AUD_398244",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:18.244Z"
+    },
+    {
+      "id": "AUD_397732",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:17.732Z"
+    },
+    {
+      "id": "AUD_397079",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:17.079Z"
+    },
+    {
+      "id": "AUD_396485",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:16.485Z"
+    },
+    {
+      "id": "AUD_395641",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:15.641Z"
+    },
+    {
+      "id": "AUD_394565",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:14.565Z"
+    },
+    {
+      "id": "AUD_392739",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:12.739Z"
+    },
+    {
+      "id": "AUD_390132",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:10.132Z"
+    },
+    {
+      "id": "AUD_387014",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:07.014Z"
+    },
+    {
+      "id": "AUD_382343",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Selected Bands (1): \"DIRECTIVE TO Marcus Vance: EVACUATE TO NEAREST HARDENED REFUGE BAY IMMEDIATELY.\"",
+      "timestamp": "2026-08-26T08:03:02.343Z"
+    },
+    {
+      "id": "AUD_264356",
+      "user_name": "Admin",
+      "action": "REPORT_GENERATED",
+      "details": "Generated report Module 1: IoT Sensor Telemetry & Subsidence Analysis Report",
+      "timestamp": "2026-08-26T08:01:04.356Z"
+    },
+    {
+      "id": "AUD_264346",
+      "user_name": "Control Room",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Pillar Extraction Sector 4: \"TEST EVACUATION SIGNAL\"",
+      "timestamp": "2026-08-26T08:01:04.346Z"
+    },
+    {
+      "id": "AUD_264333",
+      "user_name": "Module 2 Gateway",
+      "action": "BAND_ALERT_INGESTED",
+      "details": "Alert ALERT_008 (FALL_DETECTED) for miner MINER_001",
+      "timestamp": "2026-08-26T08:01:04.333Z"
+    },
+    {
+      "id": "AUD_264323",
+      "user_name": "Module 1 Gateway",
+      "action": "AI_ALERT_INGESTED",
+      "details": "Alert ALERT_007 (CRITICAL) created for ZONE_D",
+      "timestamp": "2026-08-26T08:01:04.323Z"
+    },
+    {
+      "id": "AUD_264297",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "USER_LOGIN",
+      "details": "Logged in with role Administrator",
+      "timestamp": "2026-08-26T08:01:04.297Z"
+    },
+    {
+      "id": "AUD_342410",
+      "user_name": "Admin",
+      "action": "REPORT_GENERATED",
+      "details": "Generated report Module 1: IoT Sensor Telemetry & Subsidence Analysis Report",
+      "timestamp": "2026-08-26T07:45:42.410Z"
+    },
+    {
+      "id": "AUD_342401",
+      "user_name": "Control Room",
+      "action": "BAND_BROADCAST_SENT",
+      "details": "Sent EMERGENCY_EVACUATE broadcast to Pillar Extraction Sector 4: \"TEST EVACUATION SIGNAL\"",
+      "timestamp": "2026-08-26T07:45:42.401Z"
+    },
+    {
+      "id": "AUD_342388",
+      "user_name": "Module 2 Gateway",
+      "action": "BAND_ALERT_INGESTED",
+      "details": "Alert ALERT_006 (FALL_DETECTED) for miner MINER_001",
+      "timestamp": "2026-08-26T07:45:42.388Z"
+    },
+    {
+      "id": "AUD_342379",
+      "user_name": "Module 1 Gateway",
+      "action": "AI_ALERT_INGESTED",
+      "details": "Alert ALERT_005 (CRITICAL) created for ZONE_D",
+      "timestamp": "2026-08-26T07:45:42.379Z"
+    },
+    {
+      "id": "AUD_342351",
+      "user_name": "Chief Inspector Arthur Pendelton",
+      "action": "USER_LOGIN",
+      "details": "Logged in with role Administrator",
+      "timestamp": "2026-08-26T07:45:42.351Z"
+    },
+    {
+      "id": "AUD_001",
+      "user_name": "Arthur Pendelton",
+      "action": "SYSTEM_CONFIG_UPDATE",
+      "details": "Updated subsidence alert velocity threshold to 5.0 mm/hr for ZONE_D.",
+      "timestamp": "2026-08-26T05:44:35.330Z"
+    },
+    {
+      "id": "AUD_002",
+      "user_name": "Maya Lin",
+      "action": "EMERGENCY_BROADCAST_TRIGGERED",
+      "details": "Broadcast emergency evacuation signal to BAND_001 in ZONE_D.",
+      "timestamp": "2026-08-26T07:26:35.330Z"
+    }
+  ]
+}

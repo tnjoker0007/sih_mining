@@ -1,15 +1,37 @@
 {
-  "name": "mineguard-module2",
+  "name": "mineguard-mining-safety-platform",
   "version": "1.0.0",
-  "description": "MineGuard Module 2 - Smart Miner Safety Band and Emergency Communication",
-  "main": "src/server.js",
+  "description": "MineGuard AI - Integrated Underground Mining Safety, IoT Monitoring, Smart Band Biometrics, and Command Center",
+  "main": "server/index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "node src/server.js"
+    "start": "node server/index.js",
+    "start:mod3": "node server/index.js",
+    "start:mod2": "node src/server.js",
+    "server": "node server/index.js",
+    "client": "npm --prefix client run dev",
+    "dev": "concurrently \"node server/index.js\" \"npm --prefix client run dev\"",
+    "dev:mod2": "node src/server.js",
+    "build": "npm --prefix client run build",
+    "test": "node server/test_api.js"
   },
+  "keywords": [
+    "mineguard",
+    "mining-safety",
+    "subsidence-monitoring",
+    "smart-band",
+    "command-center",
+    "rescue-coordination",
+    "iot-sensors"
+  ],
+  "author": "MineGuard AI Team",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
-  },
-  "author": "Antigravity",
-  "license": "ISC"
+    "bcryptjs": "^3.0.3",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "ws": "^8.19.0"
+  }
 }

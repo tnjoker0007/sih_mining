@@ -1,3 +1,7 @@
 node_modules/
-data/
-*.docx
+client/node_modules/
+client/dist/
+.env
+extracted_doc.txt
+theme_doc.txt
+*.log
