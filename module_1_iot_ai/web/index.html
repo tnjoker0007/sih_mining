@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MineGuard AI - Sentinel Analytics (Module 1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #080c14;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-cyan: #06b6d4;
+      --accent-blue: #3b82f6;
+      --accent-safe: #10b981;
+      --accent-warning: #f59e0b;
+      --accent-critical: #ef4444;
+      --accent-info: #0ea5e9;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.9) 0px, transparent 50%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP BAR WIREFRAME */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--card-border);
+      padding: 12px 28px;
+      backdrop-filter: blur(12px);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+    }
+
+    .mine-selector-select {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--accent-safe);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background: #0ea5e9;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* MAIN CONTAINER */
+    .dashboard-container {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* KPI CARDS WIREFRAME */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kpi-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-val {
+      font-size: 30px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      margin-top: 6px;
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* MAIN ROW: LIVE TREND & AI RISK SCORE GAUGE */
+    .main-row {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .time-filter {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px;
+      border-radius: 6px;
+    }
+
+    .time-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .time-btn.active {
+      background: var(--accent-cyan);
+      color: #000;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 240px !important;
+    }
+
+    /* AI RISK score GAUGE */
+    .gauge-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    .risk-score-big {
+      font-size: 52px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+    }
+
+    .risk-tag {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .tag-safe { background: rgba(16, 185, 129, 0.15); color: var(--accent-safe); border: 1px solid var(--accent-safe); }
+    .tag-warning { background: rgba(245, 158, 11, 0.15); color: var(--accent-warning); border: 1px solid var(--accent-warning); }
+    .tag-critical { background: rgba(239, 68, 68, 0.2); color: var(--accent-critical); border: 1px solid var(--accent-critical); animation: pulse 1s infinite alternate; }
+
+    .ai-insight-box {
+      margin-top: 16px;
+      background: rgba(6, 182, 212, 0.06);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+      color: #bae6fd;
+    }
+
+    /* SECOND ROW: NODE HEALTH & RECENT ANOMALIES */
+    .second-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .node-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .node-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .node-title {
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .node-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .anomaly-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .anomaly-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent-cyan);
+      font-size: 12px;
+    }
+
+    .anomaly-item.critical { border-left-color: var(--accent-critical); background: rgba(239, 68, 68, 0.1); }
+
+    /* BOTTOM ROW: LATEST READINGS DATA TABLE */
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    th {
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    td {
+      font-family: var(--font-mono);
+    }
+
+    /* SIMULATION CONTROLS */
+    .simulation-bar {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+    }
+
+    .btn-danger { background: rgba(239, 68, 68, 0.2); border-color: var(--accent-critical); color: #fca5a5; }
+    .btn-success { background: rgba(16, 185, 129, 0.2); border-color: var(--accent-safe); color: #6ee7b7; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR WIREFRAME -->
+  <div class="top-bar">
+    <div class="brand-section">
+      <div class="logo-badge">SENTINEL</div>
+      <div>
+        <div style="font-weight: 700; font-size: 15px;">MINEGUARD AI</div>
+        <div style="font-size: 11px; color: var(--text-muted);">Module 1: IoT Sensor Monitoring & Predictive Risk</div>
+      </div>
+      <select class="mine-selector-select">
+        <option>Shaft #1 - Jharia Underground Mine</option>
+        <option>Shaft #2 - Raniganj Coal Belt</option>
+      </select>
+    </div>
+
+    <div class="top-actions">
+      <div class="status-pill">
+        <span style="width: 8px; height: 8px; background: var(--accent-safe); border-radius: 50%;"></span>
+        Gateway Online (99.8% Uptime)
+      </div>
+      <div class="user-profile">
+        <div class="avatar">DK</div>
+        <span>DineshKumar007</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+
+    <!-- KPI CARDS WIREFRAME -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">Total Nodes</div>
+        <div class="kpi-val">24</div>
+        <div class="kpi-sub">Active Sensor Array</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Online Nodes</div>
+        <div class="kpi-val" style="color: var(--accent-safe);">22</div>
+        <div class="kpi-sub">91.6% Connectivity</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Warning Nodes</div>
+        <div class="kpi-val" style="color: var(--accent-warning);" id="kpi-warning-cnt">2</div>
+        <div class="kpi-sub">Elevated Thresholds</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Critical Nodes</div>
+        <div class="kpi-val" style="color: var(--accent-critical);" id="kpi-critical-cnt">0</div>
+        <div class="kpi-sub">Requires Immediate Action</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Average Risk Score</div>
+        <div class="kpi-val" id="kpi-avg-risk">18.4</div>
+        <div class="kpi-sub">Mine Safety Score (0-100)</div>
+      </div>
+    </div>
+
+    <!-- MAIN ROW: LIVE TREND CHART & AI RISK SCORE GAUGE -->
+    <div class="main-row">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📈 Live Multi-Sensor Telemetry Trend</div>
+          <div class="time-filter">
+            <button class="time-btn active">1h</button>
+            <button class="time-btn">6h</button>
+            <button class="time-btn">24h</button>
+            <button class="time-btn">7d</button>
+          </div>
+        </div>
+        <canvas id="trendChart"></canvas>
+      </div>
+
+      <!-- AI RISK GAUGE -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🤖 AI Risk Score Gauge</div>
+        </div>
+        <div class="gauge-wrapper">
+          <div class="risk-score-big" id="ai-risk-score">18.4</div>
+          <div class="risk-tag tag-safe" id="ai-risk-tag">SAFE CONDITION</div>
+        </div>
+        <div class="ai-insight-box">
+          <strong>AI Safety Insight:</strong><br>
+          <span id="ai-insight-text">Primary Driver: Methane (CH4) 0.35% within baseline. Seismic vibration normal (0.45g).</span>
+        </div>
+        
+        <div style="margin-top: 14px;">
+          <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">Simulation Controls:</div>
+          <div class="simulation-bar">
+            <button class="btn btn-danger" onclick="triggerMethaneLeak()">Gas Leak</button>
+            <button class="btn btn-danger" onclick="triggerSeismic()">Seismic Spike</button>
+            <button class="btn btn-success" onclick="resetBaseline()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECOND ROW: NODE HEALTH & RECENT ANOMALIES -->
+    <div class="second-row">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📡 Node Health & Telemetry Summary</div>
+        </div>
+        <div class="node-grid">
+          <div class="node-item">
+            <div class="node-title">Node-A1 (Methane & Temp) <span style="color: var(--accent-safe);">● Online</span></div>
+            <div class="node-meta">Battery: 94% | Signal: -62dBm | Heartbeat: 2s ago</div>
+          </div>
+          <div class="node-item">
+            <div class="node-title">Node-B2 (CO & Humidity) <span style="color: var(--accent-safe);">● Online</span></div>
+            <div class="node-meta">Battery: 88% | Signal: -68dBm | Heartbeat: 1s ago</div>
+          </div>
+          <div class="node-item">
+            <div class="node-title">Node-C3 (Seismic Accelerometer) <span style="color: var(--accent-safe);">● Online</span></div>
+            <div class="node-meta">Battery: 91% | Signal: -55dBm | Heartbeat: 3s ago</div>
+          </div>
+          <div class="node-item">
+            <div class="node-title">Node-D4 (Pressure & Gas) <span style="color: var(--accent-warning);">● Warning</span></div>
+            <div class="node-meta">Battery: 76% | Signal: -74dBm | Heartbeat: 4s ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🚨 Recent Anomaly & Alert Feed</div>
+        </div>
+        <div class="anomaly-feed" id="anomaly-feed">
+          <div class="anomaly-item">
+            <div>
+              <strong>Node-D4</strong>: Slight pressure anomaly detected (1.02 bar).
+            </div>
+            <span style="color: var(--text-muted);">Just now</span>
+          </div>
+          <div class="anomaly-item">
+            <div>
+              <strong>Node-A1</strong>: Methane baseline check completed (0.35%).
+            </div>
+            <span style="color: var(--text-muted);">2m ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW: LATEST READINGS DATA TABLE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📋 Latest Sensor Readings Data Table</div>
+        <div style="font-size: 12px; color: var(--text-muted);">Live Sync: Active</div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Node ID</th>
+              <th>Methane (CH4)</th>
+              <th>Carbon Monoxide (CO)</th>
+              <th>Vibration</th>
+              <th>Temp</th>
+              <th>Humidity</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="sensor-table-body">
+            <tr>
+              <td>12:59:04</td>
+              <td>NODE-A1</td>
+              <td>0.35 %</td>
+              <td>12.0 ppm</td>
+              <td>0.45 g</td>
+              <td>26.4 °C</td>
+              <td>64 %</td>
+              <td><span style="color: var(--accent-safe);">NORMAL</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Canvas Trend Chart Renderer
+    const canvas = document.getElementById('trendChart');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth - 40;
+      canvas.height = 240;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let chartData = [20, 22, 21, 24, 23, 25, 22, 20, 19, 21, 22, 24, 25, 23];
+
+    function drawChart() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Gridlines
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < canvas.height; i += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(canvas.width, i);
+        ctx.stroke();
+      }
+
+      // Warning Line
+      ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(0, 80);
+      ctx.lineTo(canvas.width, 80);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Trend Line
+      ctx.strokeStyle = '#06b6d4';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      
+      const step = canvas.width / (chartData.length - 1);
+      chartData.forEach((val, i) => {
+        const x = i * step;
+        const y = canvas.height - (val / 100 * canvas.height);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
+
+    drawChart();
+
+    let currentRisk = 18.4;
+
+    function triggerMethaneLeak() {
+      currentRisk = 85.2;
+      document.getElementById('ai-risk-score').innerText = currentRisk;
+      document.getElementById('ai-risk-tag').className = 'risk-tag tag-critical';
+      document.getElementById('ai-risk-tag').innerText = 'CRITICAL HAZARD - EVACUATE';
+      document.getElementById('ai-insight-text').innerText = 'CRITICAL: Methane spike (1.85%) exceeds 1.5% emergency threshold!';
+      document.getElementById('kpi-critical-cnt').innerText = '1';
+      document.getElementById('kpi-avg-risk').innerText = '85.2';
+
+      const feed = document.getElementById('anomaly-feed');
+      feed.innerHTML = `
+        <div class="anomaly-item critical">
+          <div><strong>Node-A1</strong>: CRITICAL Methane Gas Spike (1.85%).</div>
+          <span>Just now</span>
+        </div>` + feed.innerHTML;
+
+      chartData.push(85);
+      chartData.shift();
+      drawChart();
+    }
+
+    function triggerSeismic() {
+      currentRisk = 62.0;
+      document.getElementById('ai-risk-score').innerText = currentRisk;
+      document.getElementById('ai-risk-tag').className = 'risk-tag tag-warning';
+      document.getElementById('ai-risk-tag').innerText = 'MODERATE RISK';
+      document.getElementById('ai-insight-text').innerText = 'WARNING: Seismic accelerometer registered 4.2g vibration.';
+      document.getElementById('kpi-warning-cnt').innerText = '3';
+      document.getElementById('kpi-avg-risk').innerText = '62.0';
+
+      const feed = document.getElementById('anomaly-feed');
+      feed.innerHTML = `
+        <div class="anomaly-item">
+          <div><strong>Node-C3</strong>: Seismic accelerometer vibration (4.2g).</div>
+          <span>Just now</span>
+        </div>` + feed.innerHTML;
+
+      chartData.push(62);
+      chartData.shift();
+      drawChart();
+    }
+
+    function resetBaseline() {
+      currentRisk = 18.4;
+      document.getElementById('ai-risk-score').innerText = currentRisk;
+      document.getElementById('ai-risk-tag').className = 'risk-tag tag-safe';
+      document.getElementById('ai-risk-tag').innerText = 'SAFE CONDITION';
+      document.getElementById('ai-insight-text').innerText = 'Primary Driver: Methane (CH4) 0.35% within baseline. Seismic vibration normal (0.45g).';
+      document.getElementById('kpi-critical-cnt').innerText = '0';
+      document.getElementById('kpi-warning-cnt').innerText = '2';
+      document.getElementById('kpi-avg-risk').innerText = '18.4';
+      
+      chartData = [20, 22, 21, 24, 23, 25, 22, 20, 19, 21, 22, 24, 25, 23];
+      drawChart();
+    }
+
+    setInterval(() => {
+      if (currentRisk < 30) {
+        const val = 18 + (Math.random() * 4);
+        chartData.push(val);
+        chartData.shift();
+        drawChart();
+      }
+    }, 3000);
+  </script>
+</body>
+</html>
