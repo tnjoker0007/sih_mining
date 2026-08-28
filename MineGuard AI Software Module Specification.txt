@@ -1,0 +1,498 @@
+Software Module Specification
+Project Title
+AI-Enabled Low-Cost Real-Time Mine Subsidence Monitoring, Prediction and Early Warning System with Smart Miner Safety Band
+
+1. Project Overview
+The system is an integrated IoT, AI, real-time monitoring, GIS visualization, and wearable safety communication platform designed for mine subsidence monitoring and miner safety.
+The system receives real-time data from fixed mine sensor nodes and smart miner safety bands. Sensor data is transmitted through LoRa to an ESP32 gateway and then processed by the backend.
+The AI/ML engine analyzes sensor trends and classifies mine conditions into:
+🟢 SAFE
+🟡 WARNING
+🔴 CRITICAL
+When a dangerous condition is detected, the system automatically sends alerts to:
+Miner Safety Bands
+Control Room Dashboard
+Rescue Team
+Administrators
+The software must also support SOS alerts, worker monitoring, rescue communication, and digital mine mapping.
+
+2. User Roles
+The system shall support the following user roles.
+2.1 Administrator
+The Administrator can:
+Create and manage users
+Register miners
+Register sensor nodes
+Register smart safety bands
+Configure thresholds
+Configure mine zones
+View all alerts
+Manage rescue teams
+Access system reports
+2.2 Mine Control Room Operator
+The operator can:
+Monitor live sensor data
+View the digital mine map
+Monitor all miners
+View AI risk predictions
+Send emergency alerts
+Acknowledge alarms
+Communicate with miners
+Track SOS events
+2.3 Rescue Team
+The rescue team can:
+View active emergency incidents
+View affected mine zones
+View miner IDs and last known locations
+Receive SOS alerts
+Send emergency instructions
+Update rescue status
+2.4 Miner
+The miner does not require a complex software interface.
+The miner interacts using the Smart Safety Band through:
+SOS Button
+Alert vibration
+Buzzer
+LED status
+Small display
+Optional emergency message/voice command
+
+3. System Architecture
+                     MINE ENVIRONMENT        ┌─────────────────────────────────────┐        │         FIXED SENSOR NODES          │        │                                     │        │ MPU6050  VL53L0X  BME280  GPS       │        └──────────────────┬──────────────────┘                           │                           │ Sensor Data                           ▼                        LoRa Network                           │                           ▼                    ┌───────────────┐                    │ ESP32 GATEWAY │                    └───────┬───────┘                            │                            ▼                     BACKEND SERVER                            │              ┌─────────────┼─────────────┐              ▼             ▼             ▼         Database        AI/ML Engine    Alert Engine              │             │             │              └─────────────┼─────────────┘                            │                            ▼                     DIGITAL MINE MAP                            │              ┌─────────────┼──────────────┐              ▼             ▼              ▼        Control Room    Miner Bands     Rescue Team
+
+MODULE 1 – USER, MINER AND DEVICE MANAGEMENT
+Module Name
+User and Device Management Module
+Purpose
+This module manages all users, miners, sensor nodes, gateways, and Smart Miner Safety Bands.
+
+Features
+User Management
+The system shall allow:
+Admin login
+Operator login
+Rescue team login
+Role-based access control
+Password management
+Miner Registration
+Each miner shall have:
+Miner ID
+Full Name
+Employee ID
+Assigned Mine
+Assigned Zone
+Emergency Contact
+Smart Band ID
+Current Status
+Example:
+Miner ID: M001Name: Worker 01Band ID: BAND_001Mine Zone: Zone AStatus: SAFE
+Sensor Node Registration
+Each sensor node shall have:
+Node ID
+Node Name
+Mine Zone
+GPS coordinates if available
+Installation location
+Device status
+Battery status
+Last communication time
+Example:
+Node ID: NODE_001Zone: Tunnel AStatus: ONLINEBattery: 82%
+Smart Band Registration
+Each wearable shall be linked to a miner.
+Fields:
+Band ID
+Miner ID
+LoRa Device ID
+Battery Level
+Signal Strength
+Device Status
+Last Seen
+
+User Interface Pages
+Login Page
+User Management
+Miner Management
+Sensor Node Management
+Smart Band Management
+Device Status Page
+
+MODULE 2 – REAL-TIME SENSOR DATA MONITORING
+Module Name
+IoT Data Collection and Live Monitoring Module
+Purpose
+This module receives, stores, processes, and displays real-time sensor data.
+
+Input Sensors
+Fixed Mine Sensor Node
+The system receives:
+MPU6050├── Acceleration X├── Acceleration Y├── Acceleration Z├── Tilt X├── Tilt Y└── Tilt ZVL53L0X└── Distance / Relative DisplacementBME280├── Temperature├── Humidity└── PressureGPS├── Latitude└── Longitude
+
+Example Data Packet
+{  "node_id": "NODE_001",  "timestamp": "2026-08-26T10:30:00",  "tilt_x": 2.5,  "tilt_y": 1.8,  "acceleration": 0.42,  "vibration": 0.15,  "distance_mm": 105.2,  "displacement_mm": 5.2,  "temperature": 29.5,  "humidity": 75,  "pressure": 1008,  "latitude": 11.2345,  "longitude": 77.5678}
+
+Dashboard Requirements
+Display real-time:
+Tilt
+Vibration
+Displacement
+Temperature
+Humidity
+Pressure
+Node Status
+Battery Status
+Communication Status
+Charts
+The dashboard must include:
+Tilt vs Time
+Displacement vs Time
+Vibration vs Time
+Temperature vs Time
+Risk Level vs Time
+The dashboard should support:
+Real-time updates
+Historical data
+Date filtering
+Node filtering
+Zone filtering
+
+MODULE 3 – AI/ML SUBSIDENCE RISK PREDICTION
+Module Name
+AI-Based Subsidence Prediction and Risk Analysis Module
+Purpose
+This module analyzes multi-sensor data and predicts the risk of mine subsidence.
+
+Input Features
+The AI model shall process:
+Tilt+Tilt Change Rate+Acceleration+Vibration+Relative Displacement+Displacement Rate+Temperature+Humidity+Pressure+Historical Sensor Trends
+
+AI Output
+The AI engine shall classify conditions into:
+🟢 SAFE
+Normal sensor behavior.
+Example:
+Risk Score: 15%Status: SAFE
+🟡 WARNING
+Abnormal changes detected.
+Example:
+Risk Score: 62%Status: WARNING
+🔴 CRITICAL
+High probability of dangerous subsidence or abnormal ground/structure movement.
+Example:
+Risk Score: 91%Status: CRITICAL
+
+AI Processing Flow
+Raw Sensor Data       │       ▼Data Cleaning       │       ▼Noise Filtering       │       ▼Feature Extraction       │       ▼Trend Analysis       │       ▼AI / ML Model       │       ▼Risk Score       │       ▼SAFE / WARNING / CRITICAL
+
+Required AI Features
+The module should support:
+Real-time prediction
+Historical trend analysis
+Anomaly detection
+Risk scoring
+Prediction history
+Model performance monitoring
+The first prototype can implement a hybrid approach:
+Rule-Based Detection        +Machine Learning Model        =Final Risk Score
+This allows the system to function even when limited training data is available.
+
+MODULE 4 – DIGITAL MINE MAP AND LIVE TRACKING
+Module Name
+GIS-Based Digital Mine Monitoring Module
+Purpose
+To provide a visual representation of the mine and display sensor nodes, miners, danger zones, and emergency events.
+
+Map Features
+The digital mine map shall display:
+Sensor Nodes
+🟢 NODE 01 – SAFE🟡 NODE 02 – WARNING🔴 NODE 03 – CRITICAL
+Miner Locations
+Each miner shall be represented by:
+👷 M001👷 M002👷 M003
+Mine Zones
+Zones shall be color-coded:
+🟢 Safe Zone🟡 Warning Zone🔴 Critical Zone
+
+Map Functions
+The operator shall be able to:
+Select a mine
+Select a zone
+Click a sensor node
+View live sensor data
+View node history
+View risk level
+View miners assigned to the zone
+View active SOS alerts
+View rescue team status
+
+Critical Event Visualization
+When a critical event occurs:
+              🔴 CRITICAL ZONE                     │          ┌──────────┼──────────┐          ▼          ▼          ▼        NODE       MINER      RESCUE        DATA        ALERT      TEAM
+The affected area should be highlighted on the digital mine map.
+
+MODULE 5 – SMART MINER SAFETY BAND AND EMERGENCY COMMUNICATION
+Module Name
+Wearable Safety, SOS and Emergency Communication Module
+Purpose
+This module manages communication between Smart Miner Safety Bands, the gateway, control room, and rescue team.
+
+5.1 Smart Band Data
+Each band shall transmit:
+Band IDMiner IDBattery LevelSignal StrengthMotion StatusFall Detection StatusSOS StatusLast Communication Time
+
+5.2 Fall Detection
+The band uses MPU6050 data.
+Logic:
+Sudden Acceleration        +Abnormal Orientation        +No Movement        │        ▼Possible Fall        │        ▼Wait for User Response        │   ┌────┴────┐   ▼         ▼Response   No Response   │         │ SAFE       SOS ALERT
+The miner can cancel the false alarm using a button.
+
+5.3 SOS System
+When the miner presses the SOS button:
+SOS BUTTON     │     ▼ESP32     │     ▼LoRa Packet     │     ▼Gateway     │     ▼Control Room     │     ├──────────────► Rescue Team     │     └──────────────► Other Relevant Miners
+The software shall create an emergency incident automatically.
+
+5.4 Emergency Alert Broadcasting
+The system shall send alerts to all miners or selected miners.
+Example:
+ALERT TYPE: CRITICALMESSAGE:EVACUATE IMMEDIATELYZONE:TUNNEL ASEVERITY:CRITICAL
+The band responds with:
+Red LED
+Vibration
+Buzzer
+Display message
+
+5.5 Miner-to-Control Room Communication
+The first software version should support low-bandwidth messages.
+Example:
+HELP REQUIRED
+I AM SAFE
+MOVE TO ZONE B
+RESCUE TEAM APPROACHING
+
+5.6 Quick Emergency Buttons
+The control dashboard should allow operators to send predefined messages.
+Buttons:
+[ EVACUATE ][ STAY CALM ][ MOVE TO SAFE ZONE ][ RESCUE TEAM ON THE WAY ][ ACKNOWLEDGE SOS ]
+
+MODULE 6 – ALERT AND EARLY WARNING MANAGEMENT
+Module Name
+Intelligent Alert Management Module
+Purpose
+This module manages all warnings generated by AI, sensors, miners, and administrators.
+
+Alert Sources
+Alerts may originate from:
+AI Engine
+High Subsidence Risk
+Sensor Node
+Sudden Tilt IncreaseSudden DisplacementHigh VibrationDevice Offline
+Smart Band
+SOS PressedFall DetectedNo MovementLow BatteryCommunication Lost
+
+Alert Priority
+LEVEL 1 – INFORMATION
+Device OnlineNormal Status
+LEVEL 2 – WARNING
+Abnormal Sensor TrendLow BatteryCommunication Weak
+LEVEL 3 – CRITICAL
+High Subsidence RiskSOSMiner FallSensor Failure in Critical Zone
+
+Alert Workflow
+EVENT DETECTED      │      ▼CREATE ALERT      │      ▼ASSIGN SEVERITY      │      ├── SAFE      ├── WARNING      └── CRITICAL              │              ▼       SEND NOTIFICATIONS              │      ┌───────┼────────┐      ▼       ▼        ▼   DASHBOARD BAND    RESCUE TEAM
+
+MODULE 7 – RESCUE TEAM MANAGEMENT
+Module Name
+Emergency Rescue Coordination Module
+Features
+The rescue team dashboard shall display:
+Active incidents
+SOS alerts
+Miner ID
+Last known zone
+Last communication time
+Battery level
+Sensor risk level
+Incident status
+
+Incident Lifecycle
+NEW INCIDENT      │      ▼ACKNOWLEDGED      │      ▼RESCUE TEAM ASSIGNED      │      ▼RESCUE IN PROGRESS      │      ▼MINER SAFE / INCIDENT CLOSED
+
+MODULE 8 – REPORTS AND ANALYTICS
+Module Name
+Reports and Historical Analytics Module
+Reports Required
+Daily Sensor Report
+Includes:
+Average Tilt
+Maximum Tilt
+Maximum Displacement
+Warning Events
+Critical Events
+Miner Safety Report
+Includes:
+Miner ID
+Band Usage
+SOS Events
+Fall Events
+Alert Acknowledgements
+Incident Report
+Includes:
+Incident IDDateTimeZoneRisk LevelAffected Sensor NodesAffected MinersRescue TeamResolution Status
+
+4. Suggested Software Screens
+The system should contain the following screens.
+Authentication
+Login
+Forgot Password
+Main Dashboard
+Overview Dashboard
+Live Monitoring Dashboard
+Device Management
+Sensor Nodes
+Smart Bands
+Gateways
+Miner Management
+Miner List
+Miner Details
+Band Assignment
+Monitoring
+Real-Time Sensor Data
+Historical Data
+Sensor Charts
+AI Module
+AI Risk Prediction
+Risk History
+Model Analytics
+Digital Mine Map
+Live Mine Map
+Zone Details
+Critical Area View
+Emergency Management
+Active Alerts
+SOS Alerts
+Rescue Coordination
+Reports
+Sensor Reports
+Miner Safety Reports
+Incident Reports
+
+5. Recommended Technology Stack
+Frontend
+Use:
+React+TypeScript+Tailwind CSS
+Recommended UI features:
+Responsive dashboard
+Dark/light mode
+Real-time charts
+Interactive map
+Alert notifications
+
+Backend
+Use one of:
+Node.js + Express
+or
+Python + FastAPI
+Recommended for AI integration:
+FastAPI+Python+Machine Learning
+
+Database
+Use:
+PostgreSQL
+For time-series sensor data, optionally use:
+TimescaleDB
+Core tables:
+usersminerssmart_bandssensor_nodesgatewayssensor_readingsrisk_predictionsalertssos_eventsrescue_incidentsmessagesmine_zones
+
+Real-Time Communication
+Use:
+WebSocket / Socket.IO
+For:
+Live dashboard updates
+Real-time alerts
+Device status changes
+Emergency notifications
+
+AI/ML
+Use Python with:
+scikit-learnPandasNumPy
+Future advanced models:
+Random ForestXGBoostLSTMIsolation Forest
+
+6. Database Relationship Overview
+USER │ ├── ADMIN ├── OPERATOR └── RESCUE TEAMMINER │ └── SMART BAND        │        ├── SOS EVENTS        ├── FALL EVENTS        └── BAND STATUSMINE ZONE │ ├── SENSOR NODE │       │ │       └── SENSOR READINGS │ └── MINERSSENSOR READINGS       │       ▼AI PREDICTION       │       ▼ALERT       │       ▼RESCUE INCIDENT
+
+7. Main Dashboard Layout
+┌─────────────────────────────────────────────────────────────┐│ LOGO     MINE SAFETY MONITORING SYSTEM      🔔 ADMIN        │├──────────────┬──────────────────────────────────────────────┤│              │                                              ││ DASHBOARD    │   🟢 SAFE: 12      🟡 WARNING: 2             ││ LIVE DATA    │   🔴 CRITICAL: 1                            ││ MINE MAP     │                                              ││ MINERS       │   ┌─────────────────────────────────────┐    ││ SMART BANDS  │   │                                     │    ││ ALERTS       │   │        DIGITAL MINE MAP             │    ││ RESCUE       │   │                                     │    ││ REPORTS      │   └─────────────────────────────────────┘    ││ SETTINGS     │                                              ││              │   LIVE SENSOR CHARTS                         │└──────────────┴──────────────────────────────────────────────┘
+
+8. API Requirements
+The backend shall provide APIs for:
+Devices
+POST /api/sensor-dataGET /api/sensor-nodesGET /api/sensor-nodes/:idGET /api/sensor-history
+Miners
+GET /api/minersPOST /api/minersPUT /api/miners/:idGET /api/miners/:id
+Smart Bands
+POST /api/bands/dataPOST /api/bands/sosGET /api/bandsGET /api/bands/:id/status
+Alerts
+GET /api/alertsPOST /api/alertsPUT /api/alerts/:id/acknowledgePOST /api/alerts/broadcast
+AI Prediction
+POST /api/predict-riskGET /api/risk-history
+Rescue
+GET /api/incidentsPOST /api/incidentsPUT /api/incidents/:id/status
+
+9. Development Priority
+Phase 1 – Core Prototype
+Build first:
+User Login
+Dashboard
+Sensor Node Management
+Real-Time Sensor Data
+Live Charts
+Basic Risk Calculation
+Alert System
+Miner Management
+Smart Band Management
+SOS System
+Phase 2 – AI and Map
+Add:
+Machine Learning Prediction
+Historical Trend Analysis
+Digital Mine Map
+Zone Risk Visualization
+Advanced Notifications
+Phase 3 – Rescue Communication
+Add:
+Rescue Dashboard
+Emergency Incident Management
+Miner Messaging
+Alert Broadcasting
+Band Communication Status
+
+10. Final Functional Workflow
+SENSOR NODEMPU6050 + VL53L0X + BME280             │             ▼           ESP32             │             ▼            LoRa             │             ▼        ESP32 GATEWAY             │             ▼        BACKEND SERVER             │       ┌─────┴─────┐       ▼           ▼   DATABASE     AI ENGINE                    │                    ▼              RISK ANALYSIS                    │         ┌──────────┼──────────┐         ▼          ▼          ▼       SAFE      WARNING    CRITICAL                                │                                ▼                          ALERT ENGINE                                │             ┌──────────────────┼──────────────────┐             ▼                  ▼                  ▼        DASHBOARD         SMART MINER BAND     RESCUE TEAM             │                  │                  │             ▼                  ▼                  ▼        CONTROL ROOM       BUZZER / LED       EMERGENCY                           VIBRATION           RESPONSE
+
+11. Final Instruction for Antigravity
+Build a full-stack web application named:
+MineGuard AI – Real-Time Mine Subsidence Monitoring and Smart Miner Safety System
+The application must provide:
+Real-time IoT sensor monitoring
+AI-based subsidence risk prediction
+Safe, Warning and Critical risk classification
+Interactive digital mine map
+Sensor node management
+Miner management
+Smart Miner Safety Band monitoring
+Automatic fall detection event handling
+SOS emergency system
+Real-time emergency alerts
+Alert broadcasting to miners
+Rescue team coordination
+Historical sensor analytics
+Incident reports
+Role-based authentication
+Responsive modern dashboard
+Use a modern industrial safety dashboard design with clear status indicators:
+Green = Safe
+Yellow = Warning
+Red = Critical
+The system must be responsive for desktop, tablet, and mobile devices.
+Use mock IoT data initially, but design the backend APIs so real ESP32 Gateway and LoRa data can later be integrated without changing the frontend architecture.

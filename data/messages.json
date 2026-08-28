@@ -1,0 +1,1553 @@
+[
+  {
+    "id": "MSG_1787895626579",
+    "timestamp": "2026-08-28T05:40:26.579Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787895626580",
+    "timestamp": "2026-08-28T05:40:26.580Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_002",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_002 (Sarah Connor) offline."
+  },
+  {
+    "id": "MSG_1787895626582",
+    "timestamp": "2026-08-28T05:40:26.582Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_003",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_003 (Marcus Aurelius) offline."
+  },
+  {
+    "id": "MSG_1787895626583",
+    "timestamp": "2026-08-28T05:40:26.583Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_005",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_005 (Tony Stark) offline."
+  },
+  {
+    "id": "MSG_1787895770392",
+    "timestamp": "2026-08-28T05:42:50.392Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787895818503",
+    "timestamp": "2026-08-28T05:43:38.503Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787895878664",
+    "timestamp": "2026-08-28T05:44:38.664Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787895935845",
+    "timestamp": "2026-08-28T05:45:35.845Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787895996008",
+    "timestamp": "2026-08-28T05:46:36.008Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896056153",
+    "timestamp": "2026-08-28T05:47:36.153Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896176462",
+    "timestamp": "2026-08-28T05:49:36.462Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896236582",
+    "timestamp": "2026-08-28T05:50:36.582Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896356825",
+    "timestamp": "2026-08-28T05:52:36.825Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896416970",
+    "timestamp": "2026-08-28T05:53:36.970Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896477139",
+    "timestamp": "2026-08-28T05:54:37.139Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896537374",
+    "timestamp": "2026-08-28T05:55:37.374Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896597539",
+    "timestamp": "2026-08-28T05:56:37.540Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896657712",
+    "timestamp": "2026-08-28T05:57:37.712Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896717903",
+    "timestamp": "2026-08-28T05:58:37.903Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896778023",
+    "timestamp": "2026-08-28T05:59:38.023Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896838209",
+    "timestamp": "2026-08-28T06:00:38.209Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896898349",
+    "timestamp": "2026-08-28T06:01:38.349Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787896958513",
+    "timestamp": "2026-08-28T06:02:38.513Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897015679",
+    "timestamp": "2026-08-28T06:03:35.679Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897514962",
+    "timestamp": "2026-08-28T06:11:54.962Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897557048",
+    "timestamp": "2026-08-28T06:12:37.048Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897617217",
+    "timestamp": "2026-08-28T06:13:37.217Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897677384",
+    "timestamp": "2026-08-28T06:14:37.384Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897737569",
+    "timestamp": "2026-08-28T06:15:37.569Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897797768",
+    "timestamp": "2026-08-28T06:16:37.768Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897865033",
+    "timestamp": "2026-08-28T06:17:45.033Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897916132",
+    "timestamp": "2026-08-28T06:18:36.132Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787897976310",
+    "timestamp": "2026-08-28T06:19:36.310Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898033472",
+    "timestamp": "2026-08-28T06:20:33.472Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898093651",
+    "timestamp": "2026-08-28T06:21:33.651Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898153816",
+    "timestamp": "2026-08-28T06:22:33.816Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898213972",
+    "timestamp": "2026-08-28T06:23:33.972Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898274099",
+    "timestamp": "2026-08-28T06:24:34.099Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898403473",
+    "timestamp": "2026-08-28T06:26:43.473Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898454645",
+    "timestamp": "2026-08-28T06:27:34.645Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898514788",
+    "timestamp": "2026-08-28T06:28:34.788Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898574972",
+    "timestamp": "2026-08-28T06:29:34.972Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898635153",
+    "timestamp": "2026-08-28T06:30:35.153Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898695306",
+    "timestamp": "2026-08-28T06:31:35.306Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898755471",
+    "timestamp": "2026-08-28T06:32:35.471Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898815621",
+    "timestamp": "2026-08-28T06:33:35.621Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898875815",
+    "timestamp": "2026-08-28T06:34:35.816Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898935989",
+    "timestamp": "2026-08-28T06:35:35.989Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787898996131",
+    "timestamp": "2026-08-28T06:36:36.131Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899056309",
+    "timestamp": "2026-08-28T06:37:36.309Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899113477",
+    "timestamp": "2026-08-28T06:38:33.477Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899173649",
+    "timestamp": "2026-08-28T06:39:33.649Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899233834",
+    "timestamp": "2026-08-28T06:40:33.834Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899294062",
+    "timestamp": "2026-08-28T06:41:34.062Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899354236",
+    "timestamp": "2026-08-28T06:42:34.236Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899414456",
+    "timestamp": "2026-08-28T06:43:34.456Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899474584",
+    "timestamp": "2026-08-28T06:44:34.584Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899534763",
+    "timestamp": "2026-08-28T06:45:34.763Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899594967",
+    "timestamp": "2026-08-28T06:46:34.967Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899655141",
+    "timestamp": "2026-08-28T06:47:35.141Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899715310",
+    "timestamp": "2026-08-28T06:48:35.310Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899775488",
+    "timestamp": "2026-08-28T06:49:35.488Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899835690",
+    "timestamp": "2026-08-28T06:50:35.690Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899895867",
+    "timestamp": "2026-08-28T06:51:35.867Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787899956052",
+    "timestamp": "2026-08-28T06:52:36.052Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900016179",
+    "timestamp": "2026-08-28T06:53:36.179Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900076350",
+    "timestamp": "2026-08-28T06:54:36.350Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900133520",
+    "timestamp": "2026-08-28T06:55:33.520Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900193693",
+    "timestamp": "2026-08-28T06:56:33.693Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900253866",
+    "timestamp": "2026-08-28T06:57:33.867Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900314059",
+    "timestamp": "2026-08-28T06:58:34.059Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900374239",
+    "timestamp": "2026-08-28T06:59:34.239Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900434414",
+    "timestamp": "2026-08-28T07:00:34.414Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900494581",
+    "timestamp": "2026-08-28T07:01:34.581Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900554765",
+    "timestamp": "2026-08-28T07:02:34.765Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900614943",
+    "timestamp": "2026-08-28T07:03:34.943Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900675086",
+    "timestamp": "2026-08-28T07:04:35.086Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900735257",
+    "timestamp": "2026-08-28T07:05:35.257Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900795440",
+    "timestamp": "2026-08-28T07:06:35.440Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900855592",
+    "timestamp": "2026-08-28T07:07:35.592Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900915760",
+    "timestamp": "2026-08-28T07:08:35.760Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787900975920",
+    "timestamp": "2026-08-28T07:09:35.920Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901036092",
+    "timestamp": "2026-08-28T07:10:36.092Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901096225",
+    "timestamp": "2026-08-28T07:11:36.225Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901156368",
+    "timestamp": "2026-08-28T07:12:36.368Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901213498",
+    "timestamp": "2026-08-28T07:13:33.498Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901273671",
+    "timestamp": "2026-08-28T07:14:33.671Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901333854",
+    "timestamp": "2026-08-28T07:15:33.854Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901394033",
+    "timestamp": "2026-08-28T07:16:34.033Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901454175",
+    "timestamp": "2026-08-28T07:17:34.175Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901514301",
+    "timestamp": "2026-08-28T07:18:34.301Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901574421",
+    "timestamp": "2026-08-28T07:19:34.421Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901634580",
+    "timestamp": "2026-08-28T07:20:34.580Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901694758",
+    "timestamp": "2026-08-28T07:21:34.758Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901754918",
+    "timestamp": "2026-08-28T07:22:34.918Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901815032",
+    "timestamp": "2026-08-28T07:23:35.032Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901956436",
+    "timestamp": "2026-08-28T07:25:56.436Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787901995534",
+    "timestamp": "2026-08-28T07:26:35.534Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902055706",
+    "timestamp": "2026-08-28T07:27:35.706Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902115841",
+    "timestamp": "2026-08-28T07:28:35.841Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902175961",
+    "timestamp": "2026-08-28T07:29:35.961Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902236099",
+    "timestamp": "2026-08-28T07:30:36.099Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902296224",
+    "timestamp": "2026-08-28T07:31:36.224Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902356355",
+    "timestamp": "2026-08-28T07:32:36.355Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902413504",
+    "timestamp": "2026-08-28T07:33:33.504Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902473676",
+    "timestamp": "2026-08-28T07:34:33.676Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902533813",
+    "timestamp": "2026-08-28T07:35:33.813Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902594007",
+    "timestamp": "2026-08-28T07:36:34.007Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902654164",
+    "timestamp": "2026-08-28T07:37:34.164Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902714361",
+    "timestamp": "2026-08-28T07:38:34.361Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902774495",
+    "timestamp": "2026-08-28T07:39:34.495Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902834635",
+    "timestamp": "2026-08-28T07:40:34.635Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902894759",
+    "timestamp": "2026-08-28T07:41:34.759Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787902954909",
+    "timestamp": "2026-08-28T07:42:34.909Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903015030",
+    "timestamp": "2026-08-28T07:43:35.030Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903075138",
+    "timestamp": "2026-08-28T07:44:35.138Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903135303",
+    "timestamp": "2026-08-28T07:45:35.303Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903195451",
+    "timestamp": "2026-08-28T07:46:35.451Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903255597",
+    "timestamp": "2026-08-28T07:47:35.597Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903315774",
+    "timestamp": "2026-08-28T07:48:35.774Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903375918",
+    "timestamp": "2026-08-28T07:49:35.919Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903436057",
+    "timestamp": "2026-08-28T07:50:36.057Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903496175",
+    "timestamp": "2026-08-28T07:51:36.175Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903556264",
+    "timestamp": "2026-08-28T07:52:36.264Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903613442",
+    "timestamp": "2026-08-28T07:53:33.442Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903673591",
+    "timestamp": "2026-08-28T07:54:33.591Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903733748",
+    "timestamp": "2026-08-28T07:55:33.748Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903793897",
+    "timestamp": "2026-08-28T07:56:33.897Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903854055",
+    "timestamp": "2026-08-28T07:57:34.055Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903914168",
+    "timestamp": "2026-08-28T07:58:34.168Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787903974342",
+    "timestamp": "2026-08-28T07:59:34.342Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904034493",
+    "timestamp": "2026-08-28T08:00:34.493Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904094581",
+    "timestamp": "2026-08-28T08:01:34.581Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904154705",
+    "timestamp": "2026-08-28T08:02:34.705Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904214864",
+    "timestamp": "2026-08-28T08:03:34.864Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904275006",
+    "timestamp": "2026-08-28T08:04:35.006Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904335167",
+    "timestamp": "2026-08-28T08:05:35.167Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904395307",
+    "timestamp": "2026-08-28T08:06:35.307Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904455485",
+    "timestamp": "2026-08-28T08:07:35.485Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904515671",
+    "timestamp": "2026-08-28T08:08:35.671Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904575813",
+    "timestamp": "2026-08-28T08:09:35.813Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904635967",
+    "timestamp": "2026-08-28T08:10:35.967Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904696071",
+    "timestamp": "2026-08-28T08:11:36.071Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904756235",
+    "timestamp": "2026-08-28T08:12:36.235Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904816406",
+    "timestamp": "2026-08-28T08:13:36.406Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904873522",
+    "timestamp": "2026-08-28T08:14:33.522Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904933659",
+    "timestamp": "2026-08-28T08:15:33.659Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787904993802",
+    "timestamp": "2026-08-28T08:16:33.803Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905053949",
+    "timestamp": "2026-08-28T08:17:33.949Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905114070",
+    "timestamp": "2026-08-28T08:18:34.070Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905174219",
+    "timestamp": "2026-08-28T08:19:34.219Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905234370",
+    "timestamp": "2026-08-28T08:20:34.370Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905294569",
+    "timestamp": "2026-08-28T08:21:34.569Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905354729",
+    "timestamp": "2026-08-28T08:22:34.741Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905414881",
+    "timestamp": "2026-08-28T08:23:34.881Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905475036",
+    "timestamp": "2026-08-28T08:24:35.036Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905535194",
+    "timestamp": "2026-08-28T08:25:35.194Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905595340",
+    "timestamp": "2026-08-28T08:26:35.340Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905655520",
+    "timestamp": "2026-08-28T08:27:35.520Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905715678",
+    "timestamp": "2026-08-28T08:28:35.678Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905775818",
+    "timestamp": "2026-08-28T08:29:35.818Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905835966",
+    "timestamp": "2026-08-28T08:30:35.966Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905896088",
+    "timestamp": "2026-08-28T08:31:36.088Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787905956207",
+    "timestamp": "2026-08-28T08:32:36.207Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787906016379",
+    "timestamp": "2026-08-28T08:33:36.379Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787906073536",
+    "timestamp": "2026-08-28T08:34:33.536Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787906133713",
+    "timestamp": "2026-08-28T08:35:33.713Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787906193855",
+    "timestamp": "2026-08-28T08:36:33.855Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787906254040",
+    "timestamp": "2026-08-28T08:37:34.040Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787930750356",
+    "timestamp": "2026-08-28T15:25:50.356Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787930976514",
+    "timestamp": "2026-08-28T15:29:36.514Z",
+    "severity": "WARNING",
+    "direction": "MINER_TO_CONTROL",
+    "sender_id": "BAND_001",
+    "receiver_id": "CONTROL_ROOM",
+    "message_text": "COMMUNICATION LOSS: Wearable BAND_001 (John Doe) offline."
+  },
+  {
+    "id": "MSG_1787931095828",
+    "timestamp": "2026-08-28T15:31:35.828Z",
+    "severity": "CRITICAL",
+    "direction": "CONTROL_TO_MINER",
+    "sender_id": "CONTROL_ROOM",
+    "receiver_id": "ALL_MINERS",
+    "message_text": "CRITICAL EVACUATION DIRECTIVE: IMMINENT ROOF INSTABILITY DETECTED. CEASE OPERATIONS AND EVACUATE TO REFUGE CHAMBERS IMMEDIATELY.",
+    "broadcast": true,
+    "target_type": "all",
+    "target_id": "ALL_ZONES"
+  }
+]

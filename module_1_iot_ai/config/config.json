@@ -1,0 +1,35 @@
+{
+  "module_name": "MineGuard_Module_1_IoT_AI",
+  "version": "1.0.0",
+  "sensor_thresholds": {
+    "methane_ch4_percent": {
+      "warning": 1.0,
+      "critical": 1.5,
+      "unit": "%"
+    },
+    "carbon_monoxide_co_ppm": {
+      "warning": 25.0,
+      "critical": 50.0,
+      "unit": "ppm"
+    },
+    "temperature_celsius": {
+      "warning": 40.0,
+      "critical": 50.0,
+      "unit": "°C"
+    },
+    "humidity_percent": {
+      "warning": 85.0,
+      "critical": 95.0,
+      "unit": "%"
+    },
+    "vibration_g": {
+      "warning": 2.5,
+      "critical": 4.5,
+      "unit": "g"
+    }
+  },
+  "alert_notification": {
+    "auto_evacuate_on_critical": true,
+    "refresh_interval_seconds": 2
+  }
+}

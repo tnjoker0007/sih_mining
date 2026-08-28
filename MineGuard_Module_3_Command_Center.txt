@@ -1,0 +1,100 @@
+MINEGUARD AI
+MODULE 3 – DIGITAL MINE MAP, ALERTS, RESCUE AND ADMINISTRATION
+1. Module Overview
+Project: AI-Enabled Low-Cost Real-Time Mine Subsidence Monitoring, Prediction and Early Warning System with Smart Miner Safety BandModule Name: Digital Mine Map, Central Alert Management, Rescue Coordination and AdministrationAssigned To: Team Member 3Purpose: Build the command-center software that connects the outputs of Modules 1 and 2, visualizes the mine, manages alerts and incidents, coordinates rescue actions, and provides authentication and reporting.
+2. Authentication and Roles
+Administrator
+Full system access, users, devices, mines, zones and configuration.
+Control Room Operator
+Live monitoring, alerts, mine map, miner monitoring and emergency communication.
+Rescue Team
+Active incidents, miner status, rescue updates and emergency information.
+3. Digital Mine Map
+Display mine structure and configurable zones.
+Display sensor nodes from Module 1.
+Display miners/bands using assigned or last known zone/location.
+Color-code zones and devices as SAFE, WARNING or CRITICAL.
+Show active SOS and emergency events.
+Allow clicking a node, miner or zone to open details.
+4. Central Alert Management
+Receive AI/sensor alerts from Module 1.
+Receive SOS, fall and band status alerts from Module 2.
+Normalize all alerts into one central alert model.
+Assign severity: INFO, WARNING or CRITICAL.
+Support states: NEW, ACKNOWLEDGED, IN_PROGRESS and RESOLVED.
+Push real-time notifications to dashboard and relevant users.
+5. Rescue Coordination
+Create incident from critical alerts when required.
+Assign rescue team.
+Show affected mine zone and miners.
+Track incident status.
+Store incident updates and final resolution.
+6. Rescue Workflow
+NEW INCIDENT→ ACKNOWLEDGED→ RESCUE TEAM ASSIGNED→ RESCUE IN PROGRESS→ MINER SAFE / RESOLVED→ INCIDENT CLOSED
+7. Reports and Analytics
+Sensor event report using data from Module 1.
+Miner safety report using data from Module 2.
+Incident report.
+Alert history report.
+Filter by mine, zone and date range.
+8. Suggested APIs
+POST /api/auth/login
+GET /api/users
+POST /api/users
+GET /api/mine-zones
+POST /api/mine-zones
+GET /api/alerts
+POST /api/alerts/ai
+POST /api/alerts/miner
+PUT /api/alerts/:id/acknowledge
+POST /api/incidents
+GET /api/incidents
+PUT /api/incidents/:id/status
+POST /api/bands/broadcast
+GET /api/reports
+9. Database Tables
+users
+roles
+mines
+mine_zones
+alerts
+alert_history
+rescue_teams
+rescue_incidents
+incident_updates
+report_metadata
+10. Required Screens
+Login
+Main Command Dashboard
+Digital Mine Map
+Zone Management
+Central Alert Management
+Active Incidents
+Rescue Dashboard
+User Management
+Reports
+System Settings
+11. Module Integration Responsibilities
+Consume risk events from Module 1.
+Consume SOS/fall/band events from Module 2.
+Create unified alerts and incidents.
+Send emergency commands back to Module 2.
+Provide the central dashboard where all project components are visible.
+12. Common ID Standards
+MINE_001
+ZONE_A
+NODE_001
+MINER_001
+BAND_001
+ALERT_001
+INCIDENT_001
+13. Final Deliverables
+Role-based authentication.
+Mine and zone management.
+Interactive digital mine map.
+Unified alert engine.
+Alert lifecycle management.
+Rescue incident coordination.
+Command center dashboard.
+Reports.
+Integration of Modules 1 and 2.

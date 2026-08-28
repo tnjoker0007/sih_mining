@@ -1,0 +1,52 @@
+[
+  {
+    "miner_id": "MINER_001",
+    "name": "John Doe",
+    "employee_id": "EMP101",
+    "mine_id": "MINE_001",
+    "zone_id": "ZONE_A",
+    "status": "OFFLINE",
+    "phone": "+1 555-0101",
+    "email": "j.doe@mineguard.com"
+  },
+  {
+    "miner_id": "MINER_002",
+    "name": "Sarah Connor",
+    "employee_id": "EMP102",
+    "mine_id": "MINE_001",
+    "zone_id": "ZONE_B",
+    "status": "OFFLINE",
+    "phone": "+1 555-0102",
+    "email": "s.connor@mineguard.com"
+  },
+  {
+    "miner_id": "MINER_003",
+    "name": "Marcus Aurelius",
+    "employee_id": "EMP103",
+    "mine_id": "MINE_001",
+    "zone_id": "ZONE_A",
+    "status": "OFFLINE",
+    "phone": "+1 555-0103",
+    "email": "m.aurelius@mineguard.com"
+  },
+  {
+    "miner_id": "MINER_004",
+    "name": "Bruce Wayne",
+    "employee_id": "EMP104",
+    "mine_id": "MINE_001",
+    "zone_id": "ZONE_C",
+    "status": "SAFE",
+    "phone": "+1 555-0104",
+    "email": "b.wayne@mineguard.com"
+  },
+  {
+    "miner_id": "MINER_005",
+    "name": "Tony Stark",
+    "employee_id": "EMP105",
+    "mine_id": "MINE_001",
+    "zone_id": "ZONE_B",
+    "status": "OFFLINE",
+    "phone": "+1 555-0105",
+    "email": "t.stark@mineguard.com"
+  }
+]

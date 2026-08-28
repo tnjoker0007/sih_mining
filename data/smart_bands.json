@@ -1,0 +1,47 @@
+[
+  {
+    "band_id": "BAND_001",
+    "lora_id": "LORA_101",
+    "miner_id": "MINER_001",
+    "battery_level": 85,
+    "signal_strength": 0,
+    "online": false,
+    "last_active": "2026-08-28T15:29:24.460Z"
+  },
+  {
+    "band_id": "BAND_002",
+    "lora_id": "LORA_102",
+    "miner_id": "MINER_002",
+    "battery_level": 94,
+    "signal_strength": 88,
+    "online": false,
+    "last_active": "2026-08-28T05:40:14.535Z"
+  },
+  {
+    "band_id": "BAND_003",
+    "lora_id": "LORA_103",
+    "miner_id": "MINER_003",
+    "battery_level": 12,
+    "signal_strength": 76,
+    "online": false,
+    "last_active": "2026-08-28T05:40:14.535Z"
+  },
+  {
+    "band_id": "BAND_004",
+    "lora_id": "LORA_104",
+    "miner_id": null,
+    "battery_level": 100,
+    "signal_strength": 0,
+    "online": false,
+    "last_active": "2026-08-28T05:40:14.535Z"
+  },
+  {
+    "band_id": "BAND_005",
+    "lora_id": "LORA_105",
+    "miner_id": "MINER_005",
+    "battery_level": 62,
+    "signal_strength": 81,
+    "online": false,
+    "last_active": "2026-08-28T05:40:14.535Z"
+  }
+]

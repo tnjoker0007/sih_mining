@@ -1,0 +1,97 @@
+MINEGUARD AI
+MODULE 2 – SMART MINER SAFETY BAND AND EMERGENCY COMMUNICATION
+1. Module Overview
+Project: AI-Enabled Low-Cost Real-Time Mine Subsidence Monitoring, Prediction and Early Warning System with Smart Miner Safety BandModule Name: Smart Miner Safety Band and Emergency CommunicationAssigned To: Team Member 2Purpose: Build the software functions that manage miners and wearable bands, receive band telemetry, process fall/SOS events, and support emergency communication and alert broadcasting.
+2. Smart Band Inputs and Outputs
+Inputs
+MPU6050 movement/orientation data.
+SOS push button event.
+Optional microphone or voice-command event.
+Battery level.
+Signal/communication status.
+Outputs
+Vibration motor command.
+Buzzer command.
+LED status command.
+OLED/display message.
+Emergency acknowledgement.
+3. Miner Management
+Create, edit and view miner records.
+Assign Miner ID, employee details, mine and zone.
+Assign one smart band to a miner.
+Track current miner safety/communication status.
+4. Smart Band Management
+Register Band ID and LoRa/device ID.
+Link band to miner.
+Monitor battery, signal strength and last communication time.
+Display online/offline status.
+5. Fall Detection Workflow
+Sudden acceleration+ Abnormal orientation+ Possible inactivity→ Possible Fall→ Ask/allow miner cancellation→ No response within configured time→ Automatic emergency event/SOSThe implementation must allow false-alarm cancellation and event logging.
+6. SOS System
+Receive manual SOS from the smart band.
+Create SOS event with Miner ID, Band ID, zone/last known location and timestamp.
+Send event to Module 3 central alert/rescue system.
+Record acknowledgement and incident status.
+7. Emergency Communication
+Miner to Control Room
+HELP REQUIRED
+I AM SAFE
+I AM TRAPPED
+MEDICAL EMERGENCY
+Control Room to Miner
+EVACUATE IMMEDIATELY
+MOVE TO SAFE ZONE
+STAY CALM
+RESCUE TEAM ON THE WAY
+8. Alert Broadcasting
+Broadcast to all miners.
+Broadcast to a selected zone.
+Send to a specific miner.
+Send to a specific band.
+Support severity: INFO, WARNING and CRITICAL.
+Translate received command into band actions such as vibration, buzzer, LED and display message.
+9. Suggested APIs
+POST /api/miners
+GET /api/miners
+GET /api/miners/:id
+PUT /api/miners/:id
+POST /api/bands/data
+GET /api/bands
+GET /api/bands/:id/status
+POST /api/sos
+POST /api/fall-events
+POST /api/messages
+POST /api/bands/broadcast
+10. Example Band Packet
+{  "band_id": "BAND_001",  "miner_id": "MINER_001",  "mine_id": "MINE_001",  "zone_id": "ZONE_A",  "timestamp": "2026-08-26T10:30:00Z",  "battery": 82,  "signal_strength": 78,  "motion_status": "NORMAL",  "fall_detected": false,  "sos": false}
+11. Database Tables
+miners
+smart_bands
+band_status
+sos_events
+fall_events
+emergency_messages
+alert_acknowledgements
+12. Required Screens
+Miner List
+Miner Details
+Smart Band List
+Band Detail and Status
+SOS Dashboard
+Fall Detection Events
+Emergency Messaging
+Alert Broadcast Page
+13. Integration Contract with Module 3
+Send SOS, fall, low battery and communication-loss events to Module 3.
+Receive evacuation and emergency commands from Module 3.
+Use common IDs: MINE_ID, ZONE_ID, MINER_ID, BAND_ID, ALERT_ID and INCIDENT_ID.
+14. Final Deliverables
+Miner management system.
+Band registration and assignment.
+Band telemetry ingestion.
+Live band status monitoring.
+Fall event processing.
+Manual and automatic SOS workflow.
+Emergency messaging.
+Alert broadcasting.
+Integration with Module 3.
