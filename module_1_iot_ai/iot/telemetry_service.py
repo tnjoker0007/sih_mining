@@ -52,6 +52,25 @@ class TelemetryService:
             status = "CRITICAL"
             alerts.append({"type": "VIBRATION_CRITICAL", "message": f"Vibration level {vib}g indicates structural failure risk! EVACUATE!"})
 
+        # Check MPU Tilt Displacement & Direct Hardware Alerts
+        tilt = telemetry.get("tilt_deg", 0.0)
+        tilt_thresh = self.thresholds.get("tilt_deg", {})
+        local_alert = telemetry.get("local_alert", False)
+        remote_alert = telemetry.get("remote_alert", False)
+
+        if local_alert or remote_alert or tilt >= tilt_thresh.get("critical", 1.5):
+            status = "CRITICAL"
+            if local_alert:
+                alerts.append({"type": "HARDWARE_LOCAL_ALERT", "message": "ESP32 BAND Hardware Local Alert ACTIVE! Subsidence / Movement Alarm!"})
+            if remote_alert:
+                alerts.append({"type": "HARDWARE_REMOTE_ALERT", "message": "ESP32 BOX Hardware Remote Gateway Alert ACTIVE!"})
+            if tilt >= tilt_thresh.get("critical", 1.5):
+                alerts.append({"type": "TILT_CRITICAL", "message": f"Tilt angle {tilt}° exceeds CRITICAL threshold (1.5°)! Ground Subsidence Hazard!"})
+        elif tilt >= tilt_thresh.get("warning", 1.0):
+            if status != "CRITICAL":
+                status = "WARNING"
+            alerts.append({"type": "TILT_WARNING", "message": f"Tilt angle {tilt}° exceeds WARNING threshold (1.0°). Monitoring movement."})
+
         return {
             "station_id": telemetry.get("station_id"),
             "timestamp": telemetry.get("timestamp"),

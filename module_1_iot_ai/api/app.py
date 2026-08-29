@@ -10,9 +10,11 @@ from iot.telemetry_service import TelemetryService
 from ai.anomaly_detector import AIAnomalyDetector
 from ai.risk_predictor import AIRiskPredictor
 
+from flask import Flask, jsonify, send_from_directory, request
+
 class MineGuardModule1App:
-    def __init__(self):
-        self.sensor_reader = IoTSensorReader()
+    def __init__(self, serial_port: str = None):
+        self.sensor_reader = IoTSensorReader(port=serial_port)
         self.telemetry_service = TelemetryService()
         self.anomaly_detector = AIAnomalyDetector()
         self.risk_predictor = AIRiskPredictor()
@@ -37,8 +39,25 @@ class MineGuardModule1App:
             "raw_telemetry": raw_telemetry
         }
 
+# Flask Application Setup
+flask_app = Flask(__name__, static_folder="../web")
+module1_app = MineGuardModule1App()
+
+@flask_app.route("/")
+def serve_index():
+    return send_from_directory("../web", "index.html")
+
+@flask_app.route("/band")
+def serve_band():
+    return send_from_directory("../web", "band.html")
+
+@flask_app.route("/api/telemetry", methods=["GET"])
+def get_telemetry():
+    data = module1_app.get_live_monitoring_data()
+    return jsonify(data)
+
 if __name__ == "__main__":
-    app = MineGuardModule1App()
-    result = app.get_live_monitoring_data()
     import json
-    print(json.dumps(result, indent=2))
+    print("Starting MineGuard Module 1 IoT & AI Server on http://localhost:5000 ...")
+    flask_app.run(host="0.0.0.0", port=5000, debug=False)
+

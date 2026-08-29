@@ -26,6 +26,11 @@
       "warning": 2.5,
       "critical": 4.5,
       "unit": "g"
+    },
+    "tilt_deg": {
+      "warning": 1.0,
+      "critical": 1.5,
+      "unit": "deg"
     }
   },
   "alert_notification": {

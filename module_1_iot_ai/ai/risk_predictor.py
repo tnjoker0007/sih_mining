@@ -12,6 +12,10 @@ class AIRiskPredictor:
         base_risk = anomaly_score * 100.0
         
         # Additional safety factors
+        if telemetry.get("local_alert") or telemetry.get("remote_alert") or telemetry.get("tilt_deg", 0) >= 1.5:
+            base_risk += 100.0
+        elif telemetry.get("tilt_deg", 0) >= 1.0:
+            base_risk += 35.0
         if telemetry.get("methane_ch4_percent", 0) > 1.5:
             base_risk += 20.0
         if telemetry.get("carbon_monoxide_co_ppm", 0) > 50.0:

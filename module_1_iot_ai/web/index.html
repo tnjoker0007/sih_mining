@@ -458,11 +458,9 @@
         </div>
         
         <div style="margin-top: 14px;">
-          <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">Simulation Controls:</div>
-          <div class="simulation-bar">
-            <button class="btn btn-danger" onclick="triggerMethaneLeak()">Gas Leak</button>
-            <button class="btn btn-danger" onclick="triggerSeismic()">Seismic Spike</button>
-            <button class="btn btn-success" onclick="resetBaseline()">Reset</button>
+          <div style="font-size: 11px; color: var(--text-muted);">Hardware Sync Status:</div>
+          <div style="font-size: 12px; color: var(--accent-cyan); font-weight: 600; margin-top: 4px;" id="hw-sync-status">
+            🔌 Direct Hardware Telemetry Active
           </div>
         </div>
       </div>
@@ -472,44 +470,28 @@
     <div class="second-row">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">📡 Node Health & Telemetry Summary</div>
+          <div class="card-title">📡 Hardware Node Telemetry Summary</div>
         </div>
         <div class="node-grid">
           <div class="node-item">
-            <div class="node-title">Node-A1 (Methane & Temp) <span style="color: var(--accent-safe);">● Online</span></div>
-            <div class="node-meta">Battery: 94% | Signal: -62dBm | Heartbeat: 2s ago</div>
+            <div class="node-title">BAND-NODE-01 (MPU6050 & ESP-NOW) <span style="color: var(--accent-safe);" id="band-node-status">● Live</span></div>
+            <div class="node-meta" id="band-node-meta">Tilt: 0.00° | Status: Active | Rate: 200ms</div>
           </div>
           <div class="node-item">
-            <div class="node-title">Node-B2 (CO & Humidity) <span style="color: var(--accent-safe);">● Online</span></div>
-            <div class="node-meta">Battery: 88% | Signal: -68dBm | Heartbeat: 1s ago</div>
-          </div>
-          <div class="node-item">
-            <div class="node-title">Node-C3 (Seismic Accelerometer) <span style="color: var(--accent-safe);">● Online</span></div>
-            <div class="node-meta">Battery: 91% | Signal: -55dBm | Heartbeat: 3s ago</div>
-          </div>
-          <div class="node-item">
-            <div class="node-title">Node-D4 (Pressure & Gas) <span style="color: var(--accent-warning);">● Warning</span></div>
-            <div class="node-meta">Battery: 76% | Signal: -74dBm | Heartbeat: 4s ago</div>
+            <div class="node-title">BOX-GATEWAY-01 (ESP-NOW Gateway) <span style="color: var(--text-muted);" id="box-node-status">● Offline</span></div>
+            <div class="node-meta" id="box-node-meta">Disconnected / Waiting for wireless signal</div>
           </div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <div class="card-title">🚨 Recent Anomaly & Alert Feed</div>
+          <div class="card-title">🚨 Real Hardware Anomaly & Alert Feed</div>
         </div>
         <div class="anomaly-feed" id="anomaly-feed">
           <div class="anomaly-item">
-            <div>
-              <strong>Node-D4</strong>: Slight pressure anomaly detected (1.02 bar).
-            </div>
-            <span style="color: var(--text-muted);">Just now</span>
-          </div>
-          <div class="anomaly-item">
-            <div>
-              <strong>Node-A1</strong>: Methane baseline check completed (0.35%).
-            </div>
-            <span style="color: var(--text-muted);">2m ago</span>
+            <div><strong>System Status</strong>: Monitoring ESP32 Hardware for tilt & subsidence alerts.</div>
+            <span style="color: var(--text-muted);">Live</span>
           </div>
         </div>
       </div>
@@ -518,33 +500,25 @@
     <!-- BOTTOM ROW: LATEST READINGS DATA TABLE -->
     <div class="card">
       <div class="card-header">
-        <div class="card-title">📋 Latest Sensor Readings Data Table</div>
-        <div style="font-size: 12px; color: var(--text-muted);">Live Sync: Active</div>
+        <div class="card-title">📋 Live Hardware Sensor Data Table</div>
+        <div style="font-size: 12px; color: var(--accent-cyan);" id="live-sync-indicator">Live ESP32 Serial Stream: Active</div>
       </div>
       <div class="table-wrapper">
         <table>
           <thead>
             <tr>
               <th>Timestamp</th>
-              <th>Node ID</th>
-              <th>Methane (CH4)</th>
-              <th>Carbon Monoxide (CO)</th>
-              <th>Vibration</th>
-              <th>Temp</th>
-              <th>Humidity</th>
+              <th>Station ID</th>
+              <th>Tilt Angle (MPU)</th>
+              <th>Local Alert</th>
+              <th>Remote Alert</th>
+              <th>Vibration (g)</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody id="sensor-table-body">
             <tr>
-              <td>12:59:04</td>
-              <td>NODE-A1</td>
-              <td>0.35 %</td>
-              <td>12.0 ppm</td>
-              <td>0.45 g</td>
-              <td>26.4 °C</td>
-              <td>64 %</td>
-              <td><span style="color: var(--accent-safe);">NORMAL</span></td>
+              <td colspan="7" style="text-align: center; color: var(--text-muted);">Connecting to ESP32 Hardware Stream...</td>
             </tr>
           </tbody>
         </table>
@@ -565,7 +539,7 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    let chartData = [20, 22, 21, 24, 23, 25, 22, 20, 19, 21, 22, 24, 25, 23];
+    let chartData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     function drawChart() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -580,12 +554,12 @@
         ctx.stroke();
       }
 
-      // Warning Line
-      ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+      // Critical Warning Threshold Line (1.5 deg tilt)
+      ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
-      ctx.moveTo(0, 80);
-      ctx.lineTo(canvas.width, 80);
+      ctx.moveTo(0, 100);
+      ctx.lineTo(canvas.width, 100);
       ctx.stroke();
       ctx.setLineDash([]);
 
@@ -594,7 +568,7 @@
       ctx.lineWidth = 3;
       ctx.beginPath();
       
-      const step = canvas.width / (chartData.length - 1);
+      const step = canvas.width / Math.max(chartData.length - 1, 1);
       chartData.forEach((val, i) => {
         const x = i * step;
         const y = canvas.height - (val / 100 * canvas.height);
@@ -606,72 +580,105 @@
 
     drawChart();
 
-    let currentRisk = 18.4;
+    // Live Telemetry Polling from Backend REST API
+    async function fetchLiveTelemetry() {
+      try {
+        const res = await fetch('/api/telemetry');
+        const data = await res.json();
+        if (!data) return;
 
-    function triggerMethaneLeak() {
-      currentRisk = 85.2;
-      document.getElementById('ai-risk-score').innerText = currentRisk;
-      document.getElementById('ai-risk-tag').className = 'risk-tag tag-critical';
-      document.getElementById('ai-risk-tag').innerText = 'CRITICAL HAZARD - EVACUATE';
-      document.getElementById('ai-insight-text').innerText = 'CRITICAL: Methane spike (1.85%) exceeds 1.5% emergency threshold!';
-      document.getElementById('kpi-critical-cnt').innerText = '1';
-      document.getElementById('kpi-avg-risk').innerText = '85.2';
+        const raw = data.raw_telemetry || {};
+        const risk = data.risk_index || {};
 
-      const feed = document.getElementById('anomaly-feed');
-      feed.innerHTML = `
-        <div class="anomaly-item critical">
-          <div><strong>Node-A1</strong>: CRITICAL Methane Gas Spike (1.85%).</div>
-          <span>Just now</span>
-        </div>` + feed.innerHTML;
+        const tiltVal = raw.tilt_deg || 0.0;
+        const riskScore = risk.risk_score || 0;
 
-      chartData.push(85);
-      chartData.shift();
-      drawChart();
-    }
+        document.getElementById('ai-risk-score').innerText = riskScore.toFixed(1);
+        document.getElementById('kpi-avg-risk').innerText = riskScore.toFixed(1);
 
-    function triggerSeismic() {
-      currentRisk = 62.0;
-      document.getElementById('ai-risk-score').innerText = currentRisk;
-      document.getElementById('ai-risk-tag').className = 'risk-tag tag-warning';
-      document.getElementById('ai-risk-tag').innerText = 'MODERATE RISK';
-      document.getElementById('ai-insight-text').innerText = 'WARNING: Seismic accelerometer registered 4.2g vibration.';
-      document.getElementById('kpi-warning-cnt').innerText = '3';
-      document.getElementById('kpi-avg-risk').innerText = '62.0';
+        const riskTagEl = document.getElementById('ai-risk-tag');
+        if (data.status === 'CRITICAL' || raw.local_alert || raw.remote_alert) {
+          riskTagEl.className = 'risk-tag tag-critical';
+          riskTagEl.innerText = '🚨 CRITICAL TILT ALARM (>1.5°)';
+          document.getElementById('kpi-critical-cnt').innerText = '1';
+          document.getElementById('kpi-warning-cnt').innerText = '0';
+        } else if (data.status === 'WARNING' || tiltVal >= 1.0) {
+          riskTagEl.className = 'risk-tag tag-warning';
+          riskTagEl.innerText = '⚠️ MODERATE MOVEMENT';
+          document.getElementById('kpi-critical-cnt').innerText = '0';
+          document.getElementById('kpi-warning-cnt').innerText = '1';
+        } else {
+          riskTagEl.className = 'risk-tag tag-safe';
+          riskTagEl.innerText = '🟢 SAFE BASELINE';
+          document.getElementById('kpi-critical-cnt').innerText = '0';
+          document.getElementById('kpi-warning-cnt').innerText = '0';
+        }
 
-      const feed = document.getElementById('anomaly-feed');
-      feed.innerHTML = `
-        <div class="anomaly-item">
-          <div><strong>Node-C3</strong>: Seismic accelerometer vibration (4.2g).</div>
-          <span>Just now</span>
-        </div>` + feed.innerHTML;
+        const hwSyncEl = document.getElementById('hw-sync-status');
+        const bandStatusEl = document.getElementById('band-node-status');
+        
+        if (raw.hardware_connected) {
+          hwSyncEl.style.color = 'var(--accent-cyan)';
+          hwSyncEl.innerText = `🔌 Connected to ESP32 Hardware (${raw.active_com_port || 'USB'})`;
+          bandStatusEl.style.color = 'var(--accent-safe)';
+          bandStatusEl.innerText = '● Live';
+        } else {
+          hwSyncEl.style.color = 'var(--accent-warning)';
+          hwSyncEl.innerText = `⚠️ Disconnected / Searching for ESP32 USB Port...`;
+          bandStatusEl.style.color = 'var(--text-muted)';
+          bandStatusEl.innerText = '● Offline';
+        }
 
-      chartData.push(62);
-      chartData.shift();
-      drawChart();
-    }
+        const insightText = `Station: ${data.station || 'BAND-NODE-01'} | MPU Tilt Angle: ${tiltVal.toFixed(2)}° | Local Alarm: ${raw.local_alert ? '🚨 ACTIVE' : 'OFF'} | Remote Alarm: ${raw.remote_alert ? '🚨 ACTIVE' : 'OFF'}`;
+        document.getElementById('ai-insight-text').innerText = insightText;
 
-    function resetBaseline() {
-      currentRisk = 18.4;
-      document.getElementById('ai-risk-score').innerText = currentRisk;
-      document.getElementById('ai-risk-tag').className = 'risk-tag tag-safe';
-      document.getElementById('ai-risk-tag').innerText = 'SAFE CONDITION';
-      document.getElementById('ai-insight-text').innerText = 'Primary Driver: Methane (CH4) 0.35% within baseline. Seismic vibration normal (0.45g).';
-      document.getElementById('kpi-critical-cnt').innerText = '0';
-      document.getElementById('kpi-warning-cnt').innerText = '2';
-      document.getElementById('kpi-avg-risk').innerText = '18.4';
-      
-      chartData = [20, 22, 21, 24, 23, 25, 22, 20, 19, 21, 22, 24, 25, 23];
-      drawChart();
-    }
+        document.getElementById('band-node-meta').innerText = `Tilt: ${tiltVal.toFixed(2)}° | Local Alert: ${raw.local_alert ? 'ALERT' : 'OK'} | Remote Alert: ${raw.remote_alert ? 'ALERT' : 'OK'}`;
 
-    setInterval(() => {
-      if (currentRisk < 30) {
-        const val = 18 + (Math.random() * 4);
-        chartData.push(val);
-        chartData.shift();
+        const boxStatusEl = document.getElementById('box-node-status');
+        const boxMetaEl = document.getElementById('box-node-meta');
+        if (raw.remote_alert || raw.box_connected) {
+          boxStatusEl.style.color = 'var(--accent-safe)';
+          boxStatusEl.innerText = '● Live';
+          boxMetaEl.innerText = 'Wireless ESP-NOW Signal Active';
+        } else {
+          boxStatusEl.style.color = 'var(--text-muted)';
+          boxStatusEl.innerText = '● Offline';
+          boxMetaEl.innerText = 'Disconnected / Waiting for wireless signal';
+        }
+
+        const tbody = document.getElementById('sensor-table-body');
+        const timeStr = new Date().toLocaleTimeString();
+        tbody.innerHTML = `
+          <tr>
+            <td>${timeStr}</td>
+            <td>${data.station || 'BAND-NODE-01'}</td>
+            <td style="font-weight: 700; color: ${tiltVal >= 1.5 ? 'var(--accent-critical)' : 'var(--text-main)'};">${tiltVal.toFixed(2)} °</td>
+            <td>${raw.local_alert ? '<span style="color: var(--accent-critical); font-weight:700;">🚨 ALERT</span>' : '🟢 OK'}</td>
+            <td>${raw.remote_alert ? '<span style="color: var(--accent-critical); font-weight:700;">🚨 ALERT</span>' : '🟢 OK'}</td>
+            <td>${(raw.vibration_g || 0).toFixed(2)} g</td>
+            <td><span style="color: ${data.status === 'CRITICAL' ? 'var(--accent-critical)' : (data.status === 'WARNING' ? 'var(--accent-warning)' : 'var(--accent-safe)')}; font-weight:700;">${data.status}</span></td>
+          </tr>
+        `;
+
+        chartData.push(riskScore);
+        if (chartData.length > 25) chartData.shift();
         drawChart();
+
+        if (data.alerts && data.alerts.length > 0) {
+          const feed = document.getElementById('anomaly-feed');
+          data.alerts.forEach(alert => {
+            const item = document.createElement('div');
+            item.className = data.status === 'CRITICAL' ? 'anomaly-item critical' : 'anomaly-item';
+            item.innerHTML = `<div><strong>${data.station}</strong>: ${alert.message}</div><span>${timeStr}</span>`;
+            feed.prepend(item);
+          });
+        }
+      } catch (err) {
+        console.warn("Telemetry fetch offline:", err);
       }
-    }, 3000);
+    }
+
+    setInterval(fetchLiveTelemetry, 1000);
   </script>
 </body>
 </html>
