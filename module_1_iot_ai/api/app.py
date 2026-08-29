@@ -51,6 +51,10 @@ def serve_index():
 def serve_band():
     return send_from_directory("../web", "band.html")
 
+@flask_app.route("/telemetry")
+def serve_telemetry():
+    return send_from_directory("../web", "telemetry.html")
+
 @flask_app.route("/api/telemetry", methods=["GET"])
 def get_telemetry():
     data = module1_app.get_live_monitoring_data()

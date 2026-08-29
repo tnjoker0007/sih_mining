@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MineGuard - ESP32 Real-Time Telemetry (/telemetry)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --card-bg: rgba(16, 24, 40, 0.75);
+            --card-border: rgba(0, 210, 255, 0.18);
+            --accent-cyan: #00d2ff;
+            --accent-green: #00e676;
+            --accent-red: #ff1744;
+            --accent-orange: #ff9100;
+            --text-main: #f0f4f8;
+            --text-muted: #8a99ad;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(0, 230, 118, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .header-title h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .hw-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 10px var(--accent-green);
+        }
+
+        .status-dot.offline {
+            background-color: var(--accent-red);
+            box-shadow: 0 0 10px var(--accent-red);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 210, 255, 0.4);
+        }
+
+        .card-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .card-unit {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-left: 0.25rem;
+        }
+
+        .alert-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 0.5rem;
+        }
+
+        .alert-pill {
+            padding: 0.35rem 0.85rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .alert-pill.ok {
+            background: rgba(0, 230, 118, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+        }
+
+        .alert-pill.trigger {
+            background: rgba(255, 23, 68, 0.2);
+            color: var(--accent-red);
+            border: 1px solid rgba(255, 23, 68, 0.5);
+            animation: pulse-alert 1.2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-alert {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.03); }
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .raw-json-box {
+            grid-column: 1 / -1;
+            background: rgba(5, 8, 15, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #4df;
+            overflow-x: auto;
+        }
+
+        .raw-json-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-title">
+            <h1>📡 ESP32 Real-Time Telemetry</h1>
+            <p>Direct Unfiltered Serial Output Monitor (/telemetry)</p>
+        </div>
+        <div class="hw-badge">
+            <div class="status-dot" id="statusDot"></div>
+            <span id="portText">COM: CONNECTING...</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Station ID -->
+        <div class="card">
+            <div class="card-label">Station Identifier</div>
+            <div class="card-value" id="valStation" style="font-size: 1.5rem; color: var(--accent-cyan);">--</div>
+        </div>
+
+        <!-- Tilt Angle -->
+        <div class="card">
+            <div class="card-label">MPU Tilt Angle</div>
+            <div class="card-value"><span id="valTilt">0.00</span><span class="card-unit">°</span></div>
+        </div>
+
+        <!-- Vibration g-force -->
+        <div class="card">
+            <div class="card-label">Vibration Magnitude</div>
+            <div class="card-value"><span id="valVibration">0.00</span><span class="card-unit">g</span></div>
+        </div>
+
+        <!-- Local Alert Indicator -->
+        <div class="card">
+            <div class="card-label">Hardware Local Alarm</div>
+            <div class="alert-box">
+                <span>Local Sensor Status</span>
+                <span class="alert-pill ok" id="pillLocal">OK</span>
+            </div>
+        </div>
+
+        <!-- Remote Alert Indicator -->
+        <div class="card">
+            <div class="card-label">Hardware Remote Alarm</div>
+            <div class="alert-box">
+                <span>Gateway Radio Link</span>
+                <span class="alert-pill ok" id="pillRemote">OK</span>
+            </div>
+        </div>
+
+        <!-- Raw Serial JSON Output -->
+        <div class="raw-json-box">
+            <div class="raw-json-title">Live Serial Output Stream (COM115200)</div>
+            <div id="valRawJson">{"status": "Waiting for ESP32 serial data..."}</div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        MineGuard Hardware Integration &bull; Real ESP32 BAND Serial Endpoint: /telemetry
+    </div>
+
+    <script>
+        async function fetchTelemetry() {
+            try {
+                const response = await fetch('/api/telemetry');
+                if (!response.ok) throw new Error('API network response error');
+                
+                const data = await response.json();
+                const raw = data.raw_telemetry || {};
+
+                // 1. Station ID
+                document.getElementById('valStation').textContent = raw.station_id || 'BAND-NODE-01';
+
+                // 2. Tilt Angle
+                const tilt = typeof raw.tilt_deg === 'number' ? raw.tilt_deg.toFixed(2) : '0.00';
+                document.getElementById('valTilt').textContent = tilt;
+
+                // 3. Vibration
+                const vibration = typeof raw.vibration_g === 'number' ? raw.vibration_g.toFixed(2) : '0.00';
+                document.getElementById('valVibration').textContent = vibration;
+
+                // 4. Local Alert
+                const pillLocal = document.getElementById('pillLocal');
+                if (raw.local_alert) {
+                    pillLocal.textContent = 'ALERT!';
+                    pillLocal.className = 'alert-pill trigger';
+                } else {
+                    pillLocal.textContent = 'OK';
+                    pillLocal.className = 'alert-pill ok';
+                }
+
+                // 5. Remote Alert
+                const pillRemote = document.getElementById('pillRemote');
+                if (raw.remote_alert) {
+                    pillRemote.textContent = 'ALERT!';
+                    pillRemote.className = 'alert-pill trigger';
+                } else {
+                    pillRemote.textContent = 'OK';
+                    pillRemote.className = 'alert-pill ok';
+                }
+
+                // 6. Hardware Connection Status
+                const statusDot = document.getElementById('statusDot');
+                const portText = document.getElementById('portText');
+                if (raw.hardware_connected) {
+                    statusDot.className = 'status-dot';
+                    portText.textContent = `COM: ${raw.active_com_port || 'ONLINE'}`;
+                } else {
+                    statusDot.className = 'status-dot offline';
+                    portText.textContent = `COM: DISCONNECTED`;
+                }
+
+                // Display Real Serial JSON
+                const displayPayload = {
+                    station_id: raw.station_id || 'BAND-NODE-01',
+                    tilt_deg: raw.tilt_deg || 0.0,
+                    vibration_g: raw.vibration_g || 0.0,
+                    local_alert: !!raw.local_alert,
+                    remote_alert: !!raw.remote_alert
+                };
+                document.getElementById('valRawJson').textContent = JSON.stringify(displayPayload);
+
+            } catch (err) {
+                console.error("Telemetry fetch error:", err);
+                document.getElementById('statusDot').className = 'status-dot offline';
+                document.getElementById('portText').textContent = 'SERVER DISCONNECTED';
+            }
+        }
+
+        // Poll live telemetry every 100ms for instant 10Hz real-time updating
+        setInterval(fetchTelemetry, 100);
+        fetchTelemetry();
+    </script>
+</body>
+</html>
